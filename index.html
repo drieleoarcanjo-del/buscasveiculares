@@ -1,740 +1,472 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark scroll-smooth">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscas Veiculares - Portal Informativo Automotivo</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Pro/Free Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        luxury: {
-                            950: '#06080e',
-                            900: '#0a0e17',
-                            850: '#101625',
-                            800: '#161f33',
-                            700: '#23304d',
-                        },
-                        cyanGlow: '#00f2fe',
-                        blueGlow: '#4facfe',
-                        violetGlow: '#7f53ac',
-                    },
-                    boxShadow: {
-                        'glow-cyan': '0 0 25px -5px rgba(0, 242, 254, 0.3)',
-                        'glow-violet': '0 0 25px -5px rgba(127, 83, 172, 0.35)',
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>buscasveiculares — Guia Editorial & Consultoria Automotiva</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0066ff',
+              600: '#0052cc',
+              900: '#0b132b',
             }
+          }
         }
-    </script>
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #06080e;
-            color: #f1f5f9;
-        }
-        .glass-card {
-            background: rgba(16, 22, 37, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0, 242, 254, 0.3);
-            box-shadow: 0 12px 30px -10px rgba(0, 242, 254, 0.25);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #7f53ac 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .bg-gradient-glow {
-            background: radial-gradient(circle at 50% -20%, rgba(0, 242, 254, 0.15) 0%, rgba(127, 83, 172, 0.08) 45%, rgba(6, 8, 14, 0) 80%);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #080c14; color: #cbd5e1; }
+    .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glass-nav { background: rgba(8, 12, 20, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    .glow-cyan { text-shadow: 0 0 20px rgba(6, 182, 212, 0.4); }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col bg-luxury-950 text-slate-100 selection:bg-cyanGlow selection:text-slate-950">
+<body class="font-sans antialiased selection:bg-cyan-500 selection:text-black">
 
-    <!-- TOP DISMISSIBLE DISCLAIMER BANNER -->
-    <div id="legalBanner" class="bg-gradient-to-r from-amber-500/20 via-amber-500/15 to-amber-600/20 border-b border-amber-500/30 backdrop-blur-md text-amber-200 px-4 py-3 relative z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 text-xs sm:text-sm">
-            <div class="flex items-center gap-3">
-                <span class="p-1.5 bg-amber-500/20 rounded-lg text-amber-400 border border-amber-500/40 flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved text-base"></i>
-                </span>
-                <p class="leading-snug">
-                    <strong class="text-amber-300 font-bold uppercase tracking-wider">Aviso de Utilidade Pública:</strong> 
-                    Este portal possui caráter estritamente <strong class="text-white">INFORMATIVO E EDITORIAL</strong>. Trata-se de um projeto independente mantido por 
-                    <span class="underline decoration-amber-400/50 underline-offset-2">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</span> 
-                    (CNPJ: <strong>00.900.469/0001-92</strong>). Este site não presta serviços públicos nem possui qualquer vínculo institucional ou oficial.
-                </p>
+  <!-- AVISO TOPO DO SITE (DISMISSIBLE BANNER) -->
+  <div id="topDisclaimer" class="bg-slate-900 border-b border-cyan-500/30 text-xs py-3 px-4 relative z-50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 pr-6">
+      <div class="flex items-start md:items-center gap-2">
+        <span class="inline-block px-2 py-0.5 bg-cyan-500/20 text-cyan-400 font-semibold rounded text-[10px] uppercase tracking-wider shrink-0 mt-0.5 md:mt-0">Aviso Institucional</span>
+        <p class="text-slate-300 leading-tight">
+          O portal <strong class="text-white">buscasveiculares</strong> tem caráter exclusivamente <strong class="text-cyan-400">editorial e informativo</strong>. Este site é um projeto independente mantido por <strong class="text-white">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong> (CNPJ: 00.900.469/0001-92). Não prestamos serviços públicos, não emitimos documentos, não cobramos taxas e não possuímos qualquer vínculo governamental.
+        </p>
+      </div>
+      <button onclick="document.getElementById('topDisclaimer').style.display='none'" class="text-slate-400 hover:text-white transition-colors text-base font-bold ml-2">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <!-- HEADER / NAVEGAÇÃO -->
+  <header class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <span class="font-display font-bold text-2xl text-white tracking-tight">buscas<span class="text-cyan-400">veiculares</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#pilares" class="hover:text-cyan-400 transition-colors">Temas Editoriais</a>
+        <a href="#checklist" class="hover:text-cyan-400 transition-colors">Checklist de Compra</a>
+        <a href="#artigos" class="hover:text-cyan-400 transition-colors">Artigos</a>
+        <a href="#fipe-info" class="hover:text-cyan-400 transition-colors">Entenda FIPE</a>
+        <a href="#contato" class="hover:text-cyan-400 transition-colors">Contato</a>
+      </nav>
+
+      <a href="#contato" class="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500 hover:text-black font-medium text-sm transition-all">
+        Falar com a Redação
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative py-20 overflow-hidden border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs text-cyan-400">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            Guia Automotivo Independente · Edição 2026
+          </div>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+            Informação automotiva <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 glow-cyan">clara, direta</span> e sem enrolação.
+          </h1>
+          <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+            Revisão preventiva, inspeção física de seminovos e entenda como funciona a desvalorização baseada na Tabela FIPE. Conteúdo 100% informativo mantido de forma independente.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a href="#checklist" class="px-6 py-3.5 rounded-xl bg-cyan-500 text-black font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/25">
+              Acessar Checklist de Compra
+            </a>
+            <a href="#pilares" class="px-6 py-3.5 rounded-xl bg-slate-800 text-white font-medium hover:bg-slate-700 border border-slate-700 transition-all">
+              Explorar Guia Técnico
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-2xl p-6 relative">
+            <div class="relative h-64 rounded-xl overflow-hidden mb-4">
+              <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=80" alt="Carro Sedã Moderno em Destaque" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 bg-amber-500/90 text-black text-[11px] font-bold px-2.5 py-1 rounded">
+                Exemplo Demonstrativo de Mercado
+              </span>
             </div>
-            <button onclick="closeBanner()" class="text-amber-400 hover:text-white bg-amber-500/20 hover:bg-amber-500/30 p-2 rounded-lg transition-colors border border-amber-500/30 flex-shrink-0" title="Fechar Aviso">
-                <i class="fa-solid fa-xmark text-sm"></i>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <h3 class="text-white font-bold text-lg">Toyota Corolla XEi 2.0 2022</h3>
+                <span class="text-xs text-slate-400">Flex Automatico</span>
+              </div>
+              <p class="text-xs text-slate-400">
+                Estimativa baseada na Tabela FIPE (Mês de referência: 2026): <strong class="text-cyan-400">R$ 139.900</strong>
+              </p>
+              <div class="pt-2 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                <span>Desvalorização Média: -4.2%/ano</span>
+                <span>Custo de Revisão: Moderado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE TEMAS / PILARES -->
+  <section id="pilares" class="py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2">Temas Editoriais</h2>
+        <p class="font-display text-3xl font-bold text-white">Quatro assuntos fundamentais para o proprietário</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl mb-4">01</div>
+          <h3 class="text-white font-bold text-lg mb-2">Comprar Usado com Segurança</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Passo a passo prático para testar o veículo, avaliar histórico e identificar sinais de sinistro ou desgaste excessivo.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl mb-4">02</div>
+          <h3 class="text-white font-bold text-lg mb-2">Vistoria e Inspeção Física</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Aprenda a analisar alinhamento de lataria, numeração de chassi, vidros e integridade estrutural do automóvel.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl mb-4">03</div>
+          <h3 class="text-white font-bold text-lg mb-2">Manutenção Preventiva</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Entenda prazos por quilometragem e tempo para troca de óleo, correia dentada, fluídos e sistema de freios.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl mb-4">04</div>
+          <h3 class="text-white font-bold text-lg mb-2">Panorama da Tabela FIPE</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Como funciona o índice de valoração da Fundação Instituto de Pesquisas Econômicas e suas variações no mercado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST INTERATIVO -->
+  <section id="checklist" class="py-20 border-b border-slate-800 bg-slate-950/50">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2">Ferramenta Educativa</h2>
+        <p class="font-display text-3xl font-bold text-white mb-4">Checklist Pré-Compra do Veículo Usado</p>
+        <p class="text-slate-400 text-sm">Marque os itens à medida que inspecionar o veículo desejado.</p>
+      </div>
+
+      <div class="glass-card p-8 rounded-2xl space-y-4">
+        <label class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-cyan-500/30 transition-all">
+          <input type="checkbox" class="w-5 h-5 rounded accent-cyan-500">
+          <span class="text-slate-200 text-sm">Verificação de lacres de fábrica, pontos de solda no cofre do motor e painel traseiro.</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-cyan-500/30 transition-all">
+          <input type="checkbox" class="w-5 h-5 rounded accent-cyan-500">
+          <span class="text-slate-200 text-sm">Conferência de numeração do chassi nos vidros e etiquetagem dos blocos.</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-cyan-500/30 transition-all">
+          <input type="checkbox" class="w-5 h-5 rounded accent-cyan-500">
+          <span class="text-slate-200 text-sm">Inspeção do estado dos 4 pneus e estepe (desgaste irregular sinaliza desalinhamento).</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-cyan-500/30 transition-all">
+          <input type="checkbox" class="w-5 h-5 rounded accent-cyan-500">
+          <span class="text-slate-200 text-sm">Checagem do histórico de revisões carimbadas no manual do proprietário.</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-cyan-500/30 transition-all">
+          <input type="checkbox" class="w-5 h-5 rounded accent-cyan-500">
+          <span class="text-slate-200 text-sm">Teste de rodagem: observar barulho de suspensão, engates de marcha e alinhamento do volante.</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-cyan-500/30 transition-all">
+          <input type="checkbox" class="w-5 h-5 rounded accent-cyan-500">
+          <span class="text-slate-200 text-sm">Análise de vazamentos na parte inferior do motor e estado do líquido de arrefecimento.</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIGOS EDITORIAIS COM MODAL REAL -->
+  <section id="artigos" class="py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2">Publicações em Destaque</h2>
+          <p class="font-display text-3xl font-bold text-white">Últimas Leituras do Portal</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+          <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80" alt="Mecânico analisando motor" class="h-48 w-full object-cover">
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">Manutenção</span>
+              <h3 class="text-white font-bold text-xl mt-2 mb-3">Revisão por Quilometragem vs. Tempo</h3>
+              <p class="text-slate-400 text-sm line-clamp-3">Por que o óleo lubrificante vence mesmo com o carro parado na garagem e como evitar danos ao motor.</p>
+            </div>
+            <button onclick="openArticleModal('artigo1')" class="mt-6 text-cyan-400 hover:text-cyan-300 font-bold text-sm text-left">
+              Ler Artigo Completo →
             </button>
-        </div>
+          </div>
+        </article>
+
+        <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Veículos no pátio" class="h-48 w-full object-cover">
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">Avaliação</span>
+              <h3 class="text-white font-bold text-xl mt-2 mb-3">Como é Calculada a Tabela FIPE?</h3>
+              <p class="text-slate-400 text-sm line-clamp-3">Entenda a metodologia da Fundação Instituto de Pesquisas Econômicas para chegar ao preço médio dos carros no Brasil.</p>
+            </div>
+            <button onclick="openArticleModal('artigo2')" class="mt-6 text-cyan-400 hover:text-cyan-300 font-bold text-sm text-left">
+              Ler Artigo Completo →
+            </button>
+          </div>
+        </article>
+
+        <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+          <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" alt="Farol de carro moderno" class="h-48 w-full object-cover">
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">Inspeção</span>
+              <h3 class="text-white font-bold text-xl mt-2 mb-3">Checklist Visual de Lataria e Estrutura</h3>
+              <p class="text-slate-400 text-sm line-clamp-3">Aprenda a mapear diferenças de tonalidade na pintura e frestas desiguais entre as portas e para-lamas.</p>
+            </div>
+            <button onclick="openArticleModal('artigo3')" class="mt-6 text-cyan-400 hover:text-cyan-300 font-bold text-sm text-left">
+              Ler Artigo Completo →
+            </button>
+          </div>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <!-- NAVIGATION HEADER -->
-    <header class="sticky top-0 z-40 bg-luxury-950/85 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- BRAND LOGO -->
-                <a href="#" class="flex items-center gap-3.5 group">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyanGlow via-blueGlow to-violetGlow p-[1px] shadow-glow-cyan transition-transform duration-300 group-hover:scale-105">
-                        <div class="w-full h-full bg-luxury-950 rounded-[15px] flex items-center justify-center">
-                            <i class="fa-solid fa-gauge-high text-cyanGlow text-lg group-hover:rotate-12 transition-transform"></i>
-                        </div>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display text-2xl font-bold tracking-tight text-white">
-                            buscas<span class="text-gradient font-black">veiculares</span>
-                        </span>
-                        <span class="text-[9px] uppercase font-bold tracking-widest text-cyanGlow/80 -mt-1">Portal Editorial Automotivo</span>
-                    </div>
-                </a>
-
-                <!-- DESKTOP MENU -->
-                <nav class="hidden lg:flex items-center gap-7 text-xs uppercase font-bold tracking-wider text-slate-300">
-                    <a href="#destaques" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-fire text-cyanGlow/70"></i> Destaques
-                    </a>
-                    <a href="#tecnologia" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-microchip text-cyanGlow/70"></i> Inovação
-                    </a>
-                    <a href="#comparador" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-code-compare text-cyanGlow/70"></i> Comparador Técnico
-                    </a>
-                    <a href="#simulador" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-calculator text-cyanGlow/70"></i> Calculadora de Posse
-                    </a>
-                    <a href="#guias" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-book-open text-cyanGlow/70"></i> Guias de Manutenção
-                    </a>
-                </nav>
-
-                <!-- RIGHT ACTION BUTTONS -->
-                <div class="hidden sm:flex items-center gap-3">
-                    <button onclick="openModal('modalTermos')" class="text-slate-300 hover:text-white text-xs font-semibold px-3 py-2">
-                        Termos
-                    </button>
-                    <button onclick="openModal('modalPrivacidade')" class="bg-gradient-to-r from-cyanGlow to-blueGlow text-luxury-950 font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-glow-cyan hover:scale-105 active:scale-95">
-                        Privacidade & LGPD
-                    </button>
-                </div>
-
-                <!-- MOBILE MENU BUTTON -->
-                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 text-slate-300 hover:text-white bg-luxury-850 rounded-xl border border-white/10">
-                    <i class="fa-solid fa-bars text-lg" id="menuIcon"></i>
-                </button>
-            </div>
+  <!-- SEÇÃO FIPE INFORMATIVA -->
+  <section id="fipe-info" class="py-20 border-b border-slate-800 bg-slate-950/30">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="glass-card p-8 md:p-12 rounded-3xl border border-cyan-500/20">
+        <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase tracking-wider">Esclarecimento Importante</span>
+        <h2 class="font-display text-3xl font-bold text-white mt-4 mb-4">Sobre as Estimativas da Tabela FIPE</h2>
+        <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+          <p>
+            As cotações citadas nas análises deste portal são <strong class="text-white">estimativas baseadas na Tabela FIPE</strong> (Fundação Instituto de Pesquisas Econômicas), o índice de referência nacional para preços médios de veículos praticados no mercado brasileiro.
+          </p>
+          <p>
+            É essencial ressaltar que este site <strong class="text-white">não é oficial da FIPE</strong> e não possui qualquer afiliação institucional com a organização. A Tabela FIPE expressa a média de preços de veículos anunciados no mercado nacional, servindo como parâmetro e não como valor fixo obrigatório de negociação.
+          </p>
+          <p>
+            Fatores como estado de conservação, quilometragem, histórico de manutenção, cor e acessórios instalados alteram diretamente o valor real de mercado em uma negociação de compra ou venda.
+          </p>
         </div>
-
-        <!-- MOBILE MENU POPUP -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-luxury-900/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 space-y-4">
-            <a href="#destaques" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-fire text-cyanGlow w-6"></i> Destaques
-            </a>
-            <a href="#tecnologia" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-microchip text-cyanGlow w-6"></i> Inovação & Engenharia
-            </a>
-            <a href="#comparador" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-code-compare text-cyanGlow w-6"></i> Comparador de Especificações
-            </a>
-            <a href="#simulador" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-calculator text-cyanGlow w-6"></i> Calculadora Custo de Posse
-            </a>
-            <a href="#guias" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-book-open text-cyanGlow w-6"></i> Guias Técnicos
-            </a>
-            <div class="pt-2 flex flex-col gap-2">
-                <button onclick="openModal('modalTermos')" class="w-full text-left text-slate-300 hover:text-white text-xs font-semibold py-2">
-                    <i class="fa-solid fa-file-contract text-cyanGlow w-6"></i> Termos de Uso
-                </button>
-                <button onclick="openModal('modalPrivacidade')" class="w-full text-left text-slate-300 hover:text-white text-xs font-semibold py-2">
-                    <i class="fa-solid fa-user-shield text-cyanGlow w-6"></i> Política de Privacidade
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-grow">
-
-        <!-- HERO SECTION -->
-        <section id="destaques" class="relative py-12 lg:py-20 overflow-hidden bg-gradient-glow">
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyanGlow/10 rounded-full blur-[160px] pointer-events-none"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                
-                <div class="text-center max-w-3xl mx-auto mb-10">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-850/80 border border-cyanGlow/30 text-cyanGlow text-xs font-semibold uppercase tracking-widest mb-4 shadow-glow-cyan">
-                        <span class="w-2 h-2 rounded-full bg-cyanGlow animate-ping"></span>
-                        Engenharia, Mercado & Análises Técnicas
-                    </div>
-                    <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-                        A Inteligência do Setor <span class="text-gradient">Automotivo em Pauta</span>
-                    </h1>
-                    <p class="text-slate-300 text-sm sm:text-base mt-4 font-normal">
-                        Notícias aprofundadas, dados de performance, comparativos conceituais e guias educativos sobre manutenção preventiva.
-                    </p>
-                </div>
-
-                <!-- EDITORIAL FEATURE SLIDER -->
-                <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl group mb-12">
-                    <div class="relative h-[380px] sm:h-[480px] w-full overflow-hidden">
-                        <img id="heroSlideImage" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1600&auto=format&fit=crop" alt="Supercar Engineering" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-luxury-950 via-luxury-950/50 to-transparent"></div>
-                    </div>
-
-                    <div class="absolute bottom-0 inset-x-0 p-6 sm:p-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-                        <div class="max-w-2xl space-y-3">
-                            <div class="flex items-center gap-3">
-                                <span id="heroSlideCategory" class="px-3 py-1 rounded-full bg-cyanGlow text-luxury-950 text-xs font-extrabold uppercase tracking-wider">Hipercarros</span>
-                                <span class="text-xs text-slate-300 font-mono"><i class="fa-regular fa-clock"></i> Leitura de 4 min</span>
-                            </div>
-                            <h2 id="heroSlideTitle" class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight">
-                                A Evolução da Aerodinâmica Ativa na Indústria Automotiva
-                            </h2>
-                            <p id="heroSlideExcerpt" class="text-slate-300 text-xs sm:text-sm line-clamp-2 leading-relaxed">
-                                Entenda como asas móveis, defletores móveis sob o assoalho e componentes em fibra de carbono revolucionaram a estabilidade em altas velocidades.
-                            </p>
-                        </div>
-
-                        <div class="flex items-center gap-3">
-                            <button onclick="prevHeroSlide()" class="w-12 h-12 rounded-2xl bg-luxury-950/80 border border-white/20 hover:border-cyanGlow text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </button>
-                            <button onclick="nextHeroSlide()" class="w-12 h-12 rounded-2xl bg-luxury-950/80 border border-white/20 hover:border-cyanGlow text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EDITORIAL CARDS -->
-                <div id="tecnologia" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop" alt="Baterias Elétricas" class="w-full h-full object-cover">
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-luxury-950/80 backdrop-blur-md border border-cyanGlow/40 text-cyanGlow text-[10px] font-bold uppercase tracking-wider">
-                                Mobilidade Elétrica
-                            </span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="font-display text-lg font-bold text-white">Baterias de Estado Sólido e Eficiência Térmica</h3>
-                                <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                                    A próxima geração de acumuladores de energia promete acelerar o tempo de recarga e aumentar drasticamente a densidade energética.
-                                </p>
-                            </div>
-                            <a href="#guias" class="text-cyanGlow text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
-                                Explorar Matéria <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Motores de Alta Performance" class="w-full h-full object-cover">
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-luxury-950/80 backdrop-blur-md border border-violetGlow/40 text-violetGlow text-[10px] font-bold uppercase tracking-wider">
-                                Motores & Desempenho
-                            </span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="font-display text-lg font-bold text-white">Sistemas Híbridos de Desempenho Flexível</h3>
-                                <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                                    Como o acoplamento instantâneo de motores elétricos elimina o retardo de resposta dos turbocompressores tradicionais.
-                                </p>
-                            </div>
-                            <a href="#comparador" class="text-violetGlow text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
-                                Ver Comparativo <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=800&auto=format&fit=crop" alt="Engenharia de Chassis" class="w-full h-full object-cover">
-                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-luxury-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
-                                Dinâmica Veicular
-                            </span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="font-display text-lg font-bold text-white">Suspensão Ativa e Sensores Eletro-Hidráulicos</h3>
-                                <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                                    Entenda como a leitura antecipada do relevo garante absorção de impactos e estabilidade em curvas aceleradas.
-                                </p>
-                            </div>
-                            <a href="#guias" class="text-emerald-400 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
-                                Ler Guia de Suspensão <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: COMPARATOR -->
-        <section id="comparador" class="py-20 bg-luxury-900/40 border-t border-white/5 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="text-violetGlow text-xs font-bold uppercase tracking-widest">Fichas Técnicas & Performance</span>
-                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Comparador de Especificações Técnicas</h2>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Analise parâmetros mecânicos, aceleração, consumo estimado e dimensões entre veículos de referência.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Vehicle A -->
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 rounded-full bg-cyanGlow/10 border border-cyanGlow/30 text-cyanGlow text-xs font-bold">Veículo A</span>
-                            <span class="text-xs text-slate-400 font-mono">Ficha 1</span>
-                        </div>
-                        <select id="compVehicleA" onchange="updateComparator()" class="w-full bg-luxury-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm font-bold focus:border-cyanGlow outline-none mb-6">
-                            <option value="corolla">Toyota Corolla XEi 2.0 (177 cv)</option>
-                            <option value="civic">Honda Civic LX 2.0 (155 cv)</option>
-                            <option value="onix">Chevrolet Onix Turbo 1.0 (116 cv)</option>
-                            <option value="compass">Jeep Compass Limited 1.3T (185 cv)</option>
-                        </select>
-
-                        <div id="specBoxA" class="space-y-4 text-xs"></div>
-                    </div>
-
-                    <!-- Vehicle B -->
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 rounded-full bg-violetGlow/10 border border-violetGlow/30 text-violetGlow text-xs font-bold">Veículo B</span>
-                            <span class="text-xs text-slate-400 font-mono">Ficha 2</span>
-                        </div>
-                        <select id="compVehicleB" onchange="updateComparator()" class="w-full bg-luxury-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm font-bold focus:border-violetGlow outline-none mb-6">
-                            <option value="civic">Honda Civic LX 2.0 (155 cv)</option>
-                            <option value="corolla">Toyota Corolla XEi 2.0 (177 cv)</option>
-                            <option value="onix">Chevrolet Onix Turbo 1.0 (116 cv)</option>
-                            <option value="compass">Jeep Compass Limited 1.3T (185 cv)</option>
-                        </select>
-
-                        <div id="specBoxB" class="space-y-4 text-xs"></div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: TCO CALCULATOR -->
-        <section id="simulador" class="py-20 border-t border-white/5 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-cyanGlow text-xs font-bold uppercase tracking-widest">Estimativas & Planejamento</span>
-                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Calculadora de Custo Total de Posse (TCO)</h2>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Simule os gastos operacionais mensais com combustível, manutenção preventiva rotineira e apólice de seguro privada.
-                    </p>
-                </div>
-
-                <div class="glass-card p-6 sm:p-10 rounded-3xl border border-white/10 max-w-4xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Quilometragem Mensal (km)</label>
-                            <input type="number" id="tcoKm" value="1000" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Média de Consumo (km/l)</label>
-                            <input type="number" id="tcoKml" value="11" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Preço do Combustível (R$/L)</label>
-                            <input type="number" id="tcoPriceFuel" value="5.80" step="0.10" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Seguro Privado Anual Estimado (R$)</label>
-                            <input type="number" id="tcoInsurance" value="3600" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Revisões Preventivas Anuais (R$)</label>
-                            <input type="number" id="tcoMaint" value="2400" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
-                        </div>
-                    </div>
-
-                    <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-luxury-900 to-luxury-850 border border-cyanGlow/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-glow-cyan">
-                        <div>
-                            <span class="text-xs uppercase tracking-widest text-cyanGlow font-bold">Custo Operacional Mensal Estimado</span>
-                            <div id="tcoTotalMonth" class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-1">R$ 1.027,27 / mês</div>
-                            <p class="text-[11px] text-slate-400 mt-1">Estimativa informativa sem vínculo com tributos municipais/estaduais.</p>
-                        </div>
-                        <div class="text-right text-xs space-y-1 text-slate-300 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 border-white/10">
-                            <div>Combustível: <strong id="tcoFuelRes" class="text-white">R$ 527,27</strong></div>
-                            <div>Seguro Privado: <strong id="tcoInsuRes" class="text-white">R$ 300,00</strong></div>
-                            <div>Manutenção Preventiva: <strong id="tcoMaintRes" class="text-white">R$ 200,00</strong></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: GUIDES -->
-        <section id="guias" class="py-20 border-t border-white/5 relative bg-luxury-900/30">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="text-violetGlow text-xs font-bold uppercase tracking-widest">Conhecimento Prático</span>
-                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Guias Educativos de Manutenção</h2>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Orientações para preservar o desempenho original do veículo e identificar sinais mecânicos precoces.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-card glass-card-hover rounded-3xl border border-white/10 p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-cyanGlow/10 border border-cyanGlow/30 flex items-center justify-center text-cyanGlow text-xl mb-6">
-                                <i class="fa-solid fa-clipboard-check"></i>
-                            </div>
-                            <h3 class="font-display text-lg font-bold text-white mb-2">Vistoria Pré-Compra</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                                Aprenda a inspecionar alinhamento de lataria, estado de preservação dos discos de freio e estanqueidade de fluidos.
-                            </p>
-                        </div>
-                        <a href="#destaques" class="text-cyanGlow font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                            Ler Artigo <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="glass-card glass-card-hover rounded-3xl border border-white/10 p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-violetGlow/10 border border-violetGlow/30 flex items-center justify-center text-violetGlow text-xl mb-6">
-                                <i class="fa-solid fa-gears"></i>
-                            </div>
-                            <h3 class="font-display text-lg font-bold text-white mb-2">Lubrificação de Transmissões</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                                Entenda os intervalos recomendados de substituição de fluido em caixas automáticas CVT e de dupla embreagem.
-                            </p>
-                        </div>
-                        <a href="#destaques" class="text-violetGlow font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                            Ler Artigo <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="glass-card glass-card-hover rounded-3xl border border-white/10 p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 text-xl mb-6">
-                                <i class="fa-solid fa-battery-half"></i>
-                            </div>
-                            <h3 class="font-display text-lg font-bold text-white mb-2">Cuidados com Veículos Híbridos</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                                Como conservar o sistema de arrefecimento da bateria de tração e otimizar a frenagem regenerativa.
-                            </p>
-                        </div>
-                        <a href="#destaques" class="text-emerald-400 font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                            Ler Artigo <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-luxury-950 border-t border-white/10 py-16 text-xs text-slate-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                
-                <div class="space-y-4 md:col-span-1">
-                    <a href="#" class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-cyanGlow to-violetGlow flex items-center justify-center text-luxury-950 font-bold">
-                            <i class="fa-solid fa-gauge-high text-xs"></i>
-                        </div>
-                        <span class="font-display text-lg font-bold text-white">buscas<span class="text-cyanGlow">veiculares</span></span>
-                    </a>
-                    <p class="text-slate-400 leading-relaxed">
-                        Portal editorial independente com foco em conteúdo informativo, novidades técnicas e calculadoras operacionais.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold uppercase tracking-wider mb-4">Navegação</h4>
-                    <ul class="space-y-2.5">
-                        <li><a href="#destaques" class="hover:text-cyanGlow transition-colors">Destaques</a></li>
-                        <li><a href="#tecnologia" class="hover:text-cyanGlow transition-colors">Inovação</a></li>
-                        <li><a href="#comparador" class="hover:text-cyanGlow transition-colors">Comparador Técnico</a></li>
-                        <li><a href="#simulador" class="hover:text-cyanGlow transition-colors">Calculadora TCO</a></li>
-                        <li><a href="#guias" class="hover:text-cyanGlow transition-colors">Guias Práticos</a></li>
-                    </ul>
-                </div>
-
-                <div class="md:col-span-2 space-y-3 bg-luxury-900/50 p-6 rounded-2xl border border-white/5">
-                    <h4 class="text-white font-bold uppercase tracking-wider">Identificação do Mantenedor</h4>
-                    <p class="leading-relaxed text-slate-400">
-                        Este site é operado de forma independente por <strong class="text-slate-200">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong>, inscrita no CNPJ sob o nº <strong class="text-cyanGlow">00.900.469/0001-92</strong>.
-                    </p>
-                    <p class="leading-relaxed text-slate-400">
-                        Declaração expressa: O conteúdo deste portal possui cunho exclusivamente informativo e educativo. Não prestamos serviços governamentais nem possuímos convênios com órgãos públicos.
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                <p>&copy; 2026 Buscas Veiculares. Todos os direitos reservados.</p>
-                <div class="flex gap-6">
-                    <button onclick="openModal('modalTermos')" class="hover:text-cyanGlow transition-colors">Termos de Uso</button>
-                    <button onclick="openModal('modalPrivacidade')" class="hover:text-cyanGlow transition-colors">Política de Privacidade</button>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
-    <!-- MODAL 1: POLÍTICA DE PRIVACIDADE -->
-    <div id="modalPrivacidade" class="fixed inset-0 z-50 bg-luxury-950/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-luxury-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-6 border-b border-white/10 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-user-shield text-cyanGlow text-xl"></i>
-                    <h3 class="font-display text-lg font-bold text-white">Política de Privacidade & Proteção de Dados (LGPD)</h3>
-                </div>
-                <button onclick="closeModal('modalPrivacidade')" class="text-slate-400 hover:text-white p-2">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <div class="p-6 overflow-y-auto text-xs text-slate-300 space-y-4 leading-relaxed">
-                <p><strong>1. Coleta de Dados de Navegação:</strong> O site <em>buscasveiculares.com</em> valoriza sua privacidade. Coletamos apenas informações não identificáveis de navegação (como endereço IP anonimizado, tipo de navegador e tempo de permanência) para fins analíticos de otimização de desempenho.</p>
-                <p><strong>2. Utilização de Cookies:</strong> Utilizamos cookies técnicos estritamente necessários para permitir a navegação fluida, memorizar preferências do usuário (como o fechamento de avisos) e aperfeiçoar nossos artigos informativos.</p>
-                <p><strong>3. Não Compartilhamento de Dados:</strong> Como este site não possui formulários de cadastro de usuários nem realiza a venda de serviços, não armazenamos dados pessoais sensíveis nem compartilhamos qualquer informação com terceiros.</p>
-                <p><strong>4. Direitos do Usuário (LGPD):</strong> Nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018), o usuário possui o direito de navegar de forma anônima e desativar os cookies nas configurações do seu navegador a qualquer momento.</p>
-                <p><strong>5. Mantenedor do Portal:</strong> Este portal é mantido pela <strong>Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong> (CNPJ: 00.900.469/0001-92).</p>
-            </div>
-            <div class="p-4 border-t border-white/10 bg-luxury-950 flex justify-end">
-                <button onclick="closeModal('modalPrivacidade')" class="bg-cyanGlow text-luxury-950 font-bold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider">
-                    Entendi e Concordo
-                </button>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- MODAL 2: TERMOS DE USO -->
-    <div id="modalTermos" class="fixed inset-0 z-50 bg-luxury-950/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-luxury-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-6 border-b border-white/10 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-file-contract text-cyanGlow text-xl"></i>
-                    <h3 class="font-display text-lg font-bold text-white">Termos de Uso & Condições Gerais</h3>
-                </div>
-                <button onclick="closeModal('modalTermos')" class="text-slate-400 hover:text-white p-2">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
+  <!-- CONTATO E LOCALIZAÇÃO INSTITUCIONAL -->
+  <section id="contato" class="py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-2">Transparência & Contato</h2>
+        <p class="font-display text-3xl font-bold text-white">Redação e Identificação Institucional</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- CANAIS DE CONTATO -->
+        <div class="glass-card p-8 rounded-2xl space-y-6">
+          <h3 class="text-xl font-bold text-white mb-4 border-b border-slate-800 pb-3">Canais diretos de Atendimento</h3>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">📧</div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-400 uppercase">E-mail de Contato</h4>
+              <p class="text-white font-medium text-lg">ciep456@educacao.rj.gov.br</p>
+              <a href="mailto:ciep456@educacao.rj.gov.br" class="inline-block mt-1 text-xs text-cyan-400 hover:underline">Enviar E-mail à Redação →</a>
             </div>
-            <div class="p-6 overflow-y-auto text-xs text-slate-300 space-y-4 leading-relaxed">
-                <p><strong>1. Caráter Exclusivamente Informativo:</strong> Todo o conteúdo disponibilizado no portal <em>buscasveiculares.com</em> possui caráter exclusivamente editorial, educativo e informativo. As ferramentas interativas (como o simulador de custo de posse) fornecem estimativas baseadas em parâmetros médios do setor.</p>
-                <p><strong>2. Inexistência de Serviços Governamentais:</strong> O presente site não presta serviços públicos de regulamentação, cobrança, emissão de documentos ou consultas oficiais. Não há qualquer vínculo, convênio ou afiliação com órgãos públicos ou governamentais.</p>
-                <p><strong>3. Limitação de Responsabilidade:</strong> As decisões financeiras ou de manutenção tomadas pelo usuário com base em nossas matérias são de sua exclusiva responsabilidade. Recomendamos sempre a consulta a mecânicos qualificados e profissionais do ramo automotivo antes de realizar transações ou intervenções técnicas.</p>
-                <p><strong>4. Propriedade Intelectual:</strong> Os textos, análises e layout do site são protegidos pelas leis de direitos autorais. A reprodução sem autorização prévia é proibida.</p>
-                <p><strong>5. Entidade Mantenedora:</strong> Projeto mantido e gerido por <strong>Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong> (CNPJ: 00.900.469/0001-92).</p>
+          </div>
+
+          <div class="flex items-start gap-4 pt-4 border-t border-slate-800">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">📞</div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-400 uppercase">Telefone de Contato</h4>
+              <p class="text-white font-medium text-lg">(24) 2255-6224</p>
+              <a href="tel:2422556224" class="inline-block mt-1 text-xs text-cyan-400 hover:underline">Ligar Agora →</a>
             </div>
-            <div class="p-4 border-t border-white/10 bg-luxury-950 flex justify-end">
-                <button onclick="closeModal('modalTermos')" class="bg-cyanGlow text-luxury-950 font-bold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider">
-                    Compreendo os Termos
-                </button>
+          </div>
+
+          <div class="flex items-start gap-4 pt-4 border-t border-slate-800">
+            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">🏢</div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-400 uppercase">Razão Social e CNPJ</h4>
+              <p class="text-white font-semibold">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</p>
+              <p class="text-sm text-cyan-400 font-mono mt-1">CNPJ: 00.900.469/0001-92</p>
             </div>
+          </div>
         </div>
+
+        <!-- LOCALIZAÇÃO E ENDEREÇO -->
+        <div class="glass-card p-8 rounded-2xl space-y-6">
+          <h3 class="text-xl font-bold text-white mb-4 border-b border-slate-800 pb-3">Localização e Endereço Oficial</h3>
+
+          <div class="space-y-3 text-sm text-slate-300">
+            <p><strong class="text-white">Logradouro:</strong> Rua Iglesias Lopes, 870</p>
+            <p><strong class="text-white">Bairro:</strong> Cantagalo</p>
+            <p><strong class="text-white">CEP:</strong> 25806-040</p>
+            <p><strong class="text-white">Município / Estado:</strong> Três Rios – Rio de Janeiro (RJ)</p>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800">
+            <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Endereço para Correspondência:</h4>
+            <div class="bg-slate-900/80 p-4 rounded-xl text-xs font-mono text-slate-300 border border-slate-800 leading-relaxed">
+              Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra<br>
+              Rua Iglesias Lopes, 870 – Bairro Cantagalo<br>
+              Três Rios / RJ — CEP: 25806-040
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        function closeBanner() {
-            document.getElementById('legalBanner').style.display = 'none';
-        }
+  <!-- FOOTER -->
+  <footer class="py-12 bg-slate-950 border-t border-slate-800 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+          <span class="font-display font-bold text-xl text-white">buscas<span class="text-cyan-400">veiculares</span></span>
+          <p class="mt-1 text-slate-400">Portal informativo sobre veículos mantido por associação privada.</p>
+        </div>
+        <div class="flex gap-6">
+          <button onclick="openModal('privacidade')" class="hover:text-cyan-400 transition-colors">Política de Privacidade</button>
+          <button onclick="openModal('termos')" class="hover:text-cyan-400 transition-colors">Termos de Uso</button>
+        </div>
+      </div>
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
+      <div class="pt-6 border-t border-slate-900 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+        <p>© 2026 buscasveiculares — Projeto editorial independente. Todos os direitos reservados.</p>
+        <p class="text-[11px] text-slate-400">Mantido por Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra (CNPJ 00.900.469/0001-92)</p>
+      </div>
+    </div>
+  </footer>
 
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-            document.getElementById(modalId).classList.add('flex');
-        }
+  <!-- MODAL DE ARTIGOS -->
+  <div id="articleModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[85vh] rounded-2xl overflow-y-auto p-8 relative text-slate-200">
+      <button onclick="closeArticleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+      <div id="articleModalContent" class="space-y-4"></div>
+    </div>
+  </div>
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-            document.getElementById(modalId).classList.remove('flex');
-        }
+  <!-- MODAL DE PRIVACIDADE E TERMOS -->
+  <div id="legalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[85vh] rounded-2xl overflow-y-auto p-8 relative text-slate-200">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+      <div id="legalModalContent" class="space-y-4 text-sm leading-relaxed"></div>
+    </div>
+  </div>
 
-        // Hero Slider
-        const heroSlides = [
-            {
-                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1600&auto=format&fit=crop",
-                category: "Hipercarros",
-                title: "A Evolução da Aerodinâmica Ativa na Indústria Automotiva",
-                excerpt: "Entenda como asas móveis, defletores móveis sob o assoalho e componentes em fibra de carbono revolucionaram a estabilidade em altas velocidades."
-            },
-            {
-                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1600&auto=format&fit=crop",
-                category: "Sedãs Executivos",
-                title: "Insonorização Acústica e Dinâmica de Chassis de Alumínio",
-                excerpt: "Uma análise detalhada das ligas metálicas leves utilizadas para reduzir a massa total sem comprometer a rigidez torcional do veículo."
-            },
-            {
-                image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1600&auto=format&fit=crop",
-                category: "Conceitos Automotivos",
-                title: "Sistemas Eletrônicos de Gestão de Torque e Estabilidade",
-                excerpt: "Como a computação a bordo atua em milissegundos para redistribuir a força motriz e evitar perdas de aderência."
-            }
-        ];
+  <script>
+    const articles = {
+      artigo1: {
+        title: "Revisão por Quilometragem vs. Tempo: Entenda os Prazos",
+        content: `
+          <h3 class="text-xl font-bold text-white mb-2">Por que o óleo vence mesmo sem rodar?</h3>
+          <p class="mb-3">A recomendação dos fabricantes de veículos para substituição de fluidos e peças segue uma regra dupla: quilometragem acumulada ou tempo transcorrido (geralmente 10.000 km ou 12 meses, valendo o que ocorrer primeiro).</p>
+          <p class="mb-3">O óleo lubrificante sofre contaminação por umidade e oxidação contínua assim que entra em contato com o ar e os resíduos de combustão no carter do motor. Mesmo que um veículo rode apenas 2.000 km em um ano, o lubrificante perde suas propriedades originais de viscosidade e detergência.</p>
+          <h4 class="text-lg font-bold text-cyan-400 mt-4 mb-2">Componentes sujeitos à degradação por tempo:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-slate-300">
+            <li>Líquido de arrefecimento (perda de inibidores anticorrosivos).</li>
+            <li>Fluido de freio (propriedade higroscópica - absorve água do ar).</li>
+            <li>Correia dentada em borracha (ressecamento estrutural).</li>
+            <li>Pneus (cristalização do composto e rachaduras superficiais).</li>
+          </ul>
+        `
+      },
+      artigo2: {
+        title: "Como é Calculada a Tabela FIPE?",
+        content: `
+          <h3 class="text-xl font-bold text-white mb-2">Metodologia da Fundação Instituto de Pesquisas Econômicas</h3>
+          <p class="mb-3">A Tabela FIPE expressa a média dos preços praticados no mercado nacional de veículos usados, seminovos e novos. Os dados são coletados continuamente em anúncios, lojas especializadas e negociações diretas em todo o país.</p>
+          <p class="mb-3">Para a elaboração da média, são descartados os valores discrepantes (muito acima ou muito abaixo do padrão de mercado), garantindo que a amostragem reflita com precisão o comportamento real da oferta e demanda.</p>
+          <p class="mb-3"><strong class="text-white">Importante:</strong> A tabela é uma referência e não uma tabela fixa de preços imutáveis. O valor real negociado varia de acordo com o estado de conservação, histórico de revisões e localização geográfica do bem.</p>
+        `
+      },
+      artigo3: {
+        title: "Checklist Visual de Lataria e Estrutura em Seminovos",
+        content: `
+          <h3 class="text-xl font-bold text-white mb-2">Como Identificar Indícios de Batidas Antes de Comprar</h3>
+          <p class="mb-3">Ao inspecionar um veículo seminovo, a luz natural é a melhor aliada. Posicione o carro em local aberto e observe o alinhamento das frestas entre capô, para-lamas e portas.</p>
+          <h4 class="text-lg font-bold text-cyan-400 mt-4 mb-2">Pontos-chave para observação:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-slate-300">
+            <li>Diferença de tonalidade ou textura (aspecto casca de laranja) na pintura.</li>
+            <li>Ondulações na lataria visíveis ao olhar paralelamente à lateral do veículo.</li>
+            <li>Presença de tinta nos emborrachamentos de vidros e caixas de roda.</li>
+            <li>Marcas de chave nos parafusos de fixação das portas e do capô (indica remoção para reparo).</li>
+          </ul>
+        `
+      }
+    };
 
-        let currentSlideIndex = 0;
+    function openArticleModal(id) {
+      const art = articles[id];
+      if (!art) return;
+      document.getElementById('articleModalContent').innerHTML = `
+        <h2 class="text-2xl font-bold text-white mb-4">${art.title}</h2>
+        <div>${art.content}</div>
+      `;
+      document.getElementById('articleModal').classList.remove('hidden');
+    }
 
-        function updateHeroSlide() {
-            const slide = heroSlides[currentSlideIndex];
-            document.getElementById('heroSlideImage').src = slide.image;
-            document.getElementById('heroSlideCategory').textContent = slide.category;
-            document.getElementById('heroSlideTitle').textContent = slide.title;
-            document.getElementById('heroSlideExcerpt').textContent = slide.excerpt;
-        }
+    function closeArticleModal() {
+      document.getElementById('articleModal').classList.add('hidden');
+    }
 
-        function nextHeroSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % heroSlides.length;
-            updateHeroSlide();
-        }
+    function openModal(type) {
+      let html = '';
+      if (type === 'privacidade') {
+        html = `
+          <h2 class="text-xl font-bold text-white mb-4">Política de Privacidade</h2>
+          <p class="mb-2">O portal <strong>buscasveiculares</strong> é mantido pela entidade privada <strong>Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong> (CNPJ 00.900.469/0001-92).</p>
+          <h3 class="font-bold text-cyan-400 mt-3 mb-1">1. Coleta de Dados</h3>
+          <p class="mb-2">Este site é um portal puramente informativo. Não exigimos cadastro, não possuímos formulários para coleta de dados pessoais, não criamos contas de usuário e não comercializamos dados com terceiros, em total alinhamento com a LGPD (Lei nº 13.709/2018).</p>
+          <h3 class="font-bold text-cyan-400 mt-3 mb-1">2. Contato via E-mail</h3>
+          <p>Ao enviar uma mensagem para nosso e-mail institucional (ciep456@educacao.rj.gov.br), os dados fornecidos serão utilizados estritamente para responder à solicitação encaminhada.</p>
+        `;
+      } else {
+        html = `
+          <h2 class="text-xl font-bold text-white mb-4">Termos de Uso</h2>
+          <p class="mb-2">O acesso ao portal <strong>buscasveiculares</strong> implica a aceitação integral dos termos estabelecidos abaixo:</p>
+          <h3 class="font-bold text-cyan-400 mt-3 mb-1">1. Caráter Exclusivamente Informativo</h3>
+          <p class="mb-2">Todo o conteúdo disponibilizado tem finalidade única e exclusivamente editorial, informativa e educativa. Não emitimos documentos, não realizamos agendamentos oficiais e não temos ligação com órgãos de trânsito ou entidades governamentais.</p>
+          <h3 class="font-bold text-cyan-400 mt-3 mb-1">2. Responsabilidade do Leitor</h3>
+          <p>As decisões tomadas com base nas informações e estimativas contidas neste portal são de inteira responsabilidade do usuário.</p>
+        `;
+      }
+      document.getElementById('legalModalContent').innerHTML = html;
+      document.getElementById('legalModal').classList.remove('hidden');
+    }
 
-        function prevHeroSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + heroSlides.length) % heroSlides.length;
-            updateHeroSlide();
-        }
-
-        // Vehicle Specifications Comparator Data
-        const specDatabase = {
-            corolla: {
-                power: "177 cv @ 6.600 rpm",
-                torque: "21,4 kgfm",
-                accel: "9,2 segundos (0-100 km/h)",
-                trunk: "470 Litros",
-                urbanFuel: "11,9 km/l (Gasolina)",
-                transmission: "CVT de 10 Marchas"
-            },
-            civic: {
-                power: "155 cv @ 6.300 rpm",
-                torque: "19,5 kgfm",
-                accel: "10,0 segundos (0-100 km/h)",
-                trunk: "519 Litros",
-                urbanFuel: "10,5 km/l (Gasolina)",
-                transmission: "CVT 7 Velocidades"
-            },
-            onix: {
-                power: "116 cv @ 5.500 rpm",
-                torque: "16,8 kgfm",
-                accel: "10,1 segundos (0-100 km/h)",
-                trunk: "275 Litros",
-                urbanFuel: "13,5 km/l (Gasolina)",
-                transmission: "Automático de 6 Marchas"
-            },
-            compass: {
-                power: "185 cv @ 5.750 rpm",
-                torque: "27,5 kgfm",
-                accel: "8,8 segundos (0-100 km/h)",
-                trunk: "410 Litros",
-                urbanFuel: "10,3 km/l (Gasolina)",
-                transmission: "Automático de 6 Marchas"
-            }
-        };
-
-        function updateComparator() {
-            const keyA = document.getElementById('compVehicleA').value;
-            const keyB = document.getElementById('compVehicleB').value;
-
-            renderSpecs('specBoxA', specDatabase[keyA]);
-            renderSpecs('specBoxB', specDatabase[keyB]);
-        }
-
-        function renderSpecs(targetId, obj) {
-            document.getElementById(targetId).innerHTML = `
-                <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Potência Máxima:</span>
-                    <strong class="text-white">${obj.power}</strong>
-                </div>
-                <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Torque:</span>
-                    <strong class="text-white">${obj.torque}</strong>
-                </div>
-                <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Aceleração 0-100 km/h:</span>
-                    <strong class="text-cyanGlow">${obj.accel}</strong>
-                </div>
-                <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Capacidade do Porta-Malas:</span>
-                    <strong class="text-white">${obj.trunk}</strong>
-                </div>
-                <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Consumo Urbano Estimado:</span>
-                    <strong class="text-emerald-400">${obj.urbanFuel}</strong>
-                </div>
-                <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Transmissão:</span>
-                    <strong class="text-white">${obj.transmission}</strong>
-                </div>
-            `;
-        }
-
-        // TCO Calculation
-        function calcTCO() {
-            const km = parseFloat(document.getElementById('tcoKm').value) || 0;
-            const kml = parseFloat(document.getElementById('tcoKml').value) || 1;
-            const pFuel = parseFloat(document.getElementById('tcoPriceFuel').value) || 0;
-            const insurance = parseFloat(document.getElementById('tcoInsurance').value) || 0;
-            const maint = parseFloat(document.getElementById('tcoMaint').value) || 0;
-
-            const fuelMonthly = (km / kml) * pFuel;
-            const insuMonthly = insurance / 12;
-            const maintMonthly = maint / 12;
-
-            const total = fuelMonthly + insuMonthly + maintMonthly;
-
-            document.getElementById('tcoTotalMonth').textContent = 'R$ ' + total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' / mês';
-            document.getElementById('tcoFuelRes').textContent = 'R$ ' + fuelMonthly.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById('tcoInsuRes').textContent = 'R$ ' + insuMonthly.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            document.getElementById('tcoMaintRes').textContent = 'R$ ' + maintMonthly.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
-
-        window.onload = function() {
-            updateComparator();
-            calcTCO();
-        };
-    </script>
+    function closeModal() {
+      document.getElementById('legalModal').classList.add('hidden');
+    }
+  </script>
 </body>
 </html>
