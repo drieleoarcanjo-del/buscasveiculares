@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscas Veiculares - Portal de Informações, Tabela FIPE & Fichas Técnicas</title>
+    <title>Buscas Veiculares - Portal Informativo Automotivo</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Pro/Free Icons -->
@@ -71,22 +71,6 @@
         .bg-gradient-glow {
             background: radial-gradient(circle at 50% -20%, rgba(0, 242, 254, 0.15) 0%, rgba(127, 83, 172, 0.08) 45%, rgba(6, 8, 14, 0) 80%);
         }
-        .glow-border {
-            position: relative;
-        }
-        .glow-border::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            background: linear-gradient(90deg, rgba(0, 242, 254, 0.4), rgba(127, 83, 172, 0.4));
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0.5;
-            transition: opacity 0.3s;
-        }
-        .glow-border:hover::after {
-            opacity: 1;
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col bg-luxury-950 text-slate-100 selection:bg-cyanGlow selection:text-slate-950">
@@ -99,10 +83,10 @@
                     <i class="fa-solid fa-shield-halved text-base"></i>
                 </span>
                 <p class="leading-snug">
-                    <strong class="text-amber-300 font-bold uppercase tracking-wider">Aviso Importante:</strong> 
-                    Este portal possui caráter exclusivamente <strong class="text-white">INFORMATIVO</strong> e é um projeto independente mantido por 
+                    <strong class="text-amber-300 font-bold uppercase tracking-wider">Aviso de Utilidade Pública:</strong> 
+                    Este portal possui caráter estritamente <strong class="text-white">INFORMATIVO E EDITORIAL</strong>. Trata-se de um projeto independente mantido por 
                     <span class="underline decoration-amber-400/50 underline-offset-2">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</span> 
-                    (CNPJ: <strong>00.900.469/0001-92</strong>). Este site possui foco educativo sobre o mercado automotivo e não tem vínculo com órgãos públicos.
+                    (CNPJ: <strong>00.900.469/0001-92</strong>). Este site não presta serviços públicos nem possui qualquer vínculo institucional ou oficial.
                 </p>
             </div>
             <button onclick="closeBanner()" class="text-amber-400 hover:text-white bg-amber-500/20 hover:bg-amber-500/30 p-2 rounded-lg transition-colors border border-amber-500/30 flex-shrink-0" title="Fechar Aviso">
@@ -127,7 +111,7 @@
                         <span class="font-display text-2xl font-bold tracking-tight text-white">
                             buscas<span class="text-gradient font-black">veiculares</span>
                         </span>
-                        <span class="text-[9px] uppercase font-bold tracking-widest text-cyanGlow/80 -mt-1">Automotive Editorial & Intelligence</span>
+                        <span class="text-[9px] uppercase font-bold tracking-widest text-cyanGlow/80 -mt-1">Portal Editorial Automotivo</span>
                     </div>
                 </a>
 
@@ -137,24 +121,27 @@
                         <i class="fa-solid fa-fire text-cyanGlow/70"></i> Destaques
                     </a>
                     <a href="#tecnologia" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-microchip text-cyanGlow/70"></i> Tecnologia
+                        <i class="fa-solid fa-microchip text-cyanGlow/70"></i> Inovação
                     </a>
                     <a href="#comparador" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-code-compare text-cyanGlow/70"></i> Specs Comparador
+                        <i class="fa-solid fa-code-compare text-cyanGlow/70"></i> Comparador Técnico
                     </a>
-                    <a href="#ferramentas" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-sliders text-cyanGlow/70"></i> Simuladores & FIPE
+                    <a href="#simulador" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-cyanGlow/70"></i> Calculadora de Posse
                     </a>
                     <a href="#guias" class="hover:text-cyanGlow transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-book-open text-cyanGlow/70"></i> Guias
+                        <i class="fa-solid fa-book-open text-cyanGlow/70"></i> Guias de Manutenção
                     </a>
                 </nav>
 
-                <!-- RIGHT ACTION BUTTON -->
+                <!-- RIGHT ACTION BUTTONS -->
                 <div class="hidden sm:flex items-center gap-3">
-                    <a href="#ferramentas" class="bg-gradient-to-r from-cyanGlow to-blueGlow hover:from-blueGlow hover:to-cyanGlow text-luxury-950 font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-glow-cyan hover:scale-105 active:scale-95 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-line"></i> Tabela FIPE & Simulador
-                    </a>
+                    <button onclick="openModal('modalTermos')" class="text-slate-300 hover:text-white text-xs font-semibold px-3 py-2">
+                        Termos
+                    </button>
+                    <button onclick="openModal('modalPrivacidade')" class="bg-gradient-to-r from-cyanGlow to-blueGlow text-luxury-950 font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-glow-cyan hover:scale-105 active:scale-95">
+                        Privacidade & LGPD
+                    </button>
                 </div>
 
                 <!-- MOBILE MENU BUTTON -->
@@ -167,51 +154,55 @@
         <!-- MOBILE MENU POPUP -->
         <div id="mobileMenu" class="hidden lg:hidden bg-luxury-900/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 space-y-4">
             <a href="#destaques" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-fire text-cyanGlow w-6"></i> Destaques da Semana
+                <i class="fa-solid fa-fire text-cyanGlow w-6"></i> Destaques
             </a>
             <a href="#tecnologia" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-microchip text-cyanGlow w-6"></i> Inovações & Elétricos
+                <i class="fa-solid fa-microchip text-cyanGlow w-6"></i> Inovação & Engenharia
             </a>
             <a href="#comparador" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-code-compare text-cyanGlow w-6"></i> Comparador Técnico
+                <i class="fa-solid fa-code-compare text-cyanGlow w-6"></i> Comparador de Especificações
             </a>
-            <a href="#ferramentas" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
-                <i class="fa-solid fa-sliders text-cyanGlow w-6"></i> Ferramentas FIPE & TCO
+            <a href="#simulador" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
+                <i class="fa-solid fa-calculator text-cyanGlow w-6"></i> Calculadora Custo de Posse
             </a>
-            <a href="#guias" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow">
-                <i class="fa-solid fa-book-open text-cyanGlow w-6"></i> Guias de Compra
+            <a href="#guias" onclick="toggleMobileMenu()" class="block text-slate-200 font-bold hover:text-cyanGlow border-b border-white/5 pb-3">
+                <i class="fa-solid fa-book-open text-cyanGlow w-6"></i> Guias Técnicos
             </a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="openModal('modalTermos')" class="w-full text-left text-slate-300 hover:text-white text-xs font-semibold py-2">
+                    <i class="fa-solid fa-file-contract text-cyanGlow w-6"></i> Termos de Uso
+                </button>
+                <button onclick="openModal('modalPrivacidade')" class="w-full text-left text-slate-300 hover:text-white text-xs font-semibold py-2">
+                    <i class="fa-solid fa-user-shield text-cyanGlow w-6"></i> Política de Privacidade
+                </button>
+            </div>
         </div>
     </header>
 
     <main class="flex-grow">
 
-        <!-- ULTRA-PREMIUM HERO SECTION: EDITORIAL SHOWCASE & HIGH-DEFINITION AUTOMOTIVE IMAGERY -->
+        <!-- HERO SECTION -->
         <section id="destaques" class="relative py-12 lg:py-20 overflow-hidden bg-gradient-glow">
-            <!-- Background Glow FX -->
             <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyanGlow/10 rounded-full blur-[160px] pointer-events-none"></div>
-            <div class="absolute top-1/3 right-10 w-[500px] h-[500px] bg-violetGlow/15 rounded-full blur-[140px] pointer-events-none"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 
-                <!-- Hero Header Titles -->
                 <div class="text-center max-w-3xl mx-auto mb-10">
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-850/80 border border-cyanGlow/30 text-cyanGlow text-xs font-semibold uppercase tracking-widest mb-4 shadow-glow-cyan">
                         <span class="w-2 h-2 rounded-full bg-cyanGlow animate-ping"></span>
-                        Universo Automotivo & Engenharia de Alta Performance
+                        Engenharia, Mercado & Análises Técnicas
                     </div>
                     <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-                        A Excelência do Mercado <span class="text-gradient">Automotivo em Foco</span>
+                        A Inteligência do Setor <span class="text-gradient">Automotivo em Pauta</span>
                     </h1>
                     <p class="text-slate-300 text-sm sm:text-base mt-4 font-normal">
-                        Análises profundas, evolução tecnológica, fichas técnicas completas e inteligência de mercado para os entusiastas da engenharia veicular.
+                        Notícias aprofundadas, dados de performance, comparativos conceituais e guias educativos sobre manutenção preventiva.
                     </p>
                 </div>
 
-                <!-- MAIN EDITORIAL FEATURE CAROUSEL / FEATURED BANNER -->
+                <!-- EDITORIAL FEATURE SLIDER -->
                 <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl group mb-12">
                     <div class="relative h-[380px] sm:h-[480px] w-full overflow-hidden">
-                        <!-- High Definition Automotive Hero Image -->
                         <img id="heroSlideImage" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1600&auto=format&fit=crop" alt="Supercar Engineering" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-luxury-950 via-luxury-950/50 to-transparent"></div>
                     </div>
@@ -219,18 +210,17 @@
                     <div class="absolute bottom-0 inset-x-0 p-6 sm:p-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div class="max-w-2xl space-y-3">
                             <div class="flex items-center gap-3">
-                                <span id="heroSlideCategory" class="px-3 py-1 rounded-full bg-cyanGlow text-luxury-950 text-xs font-extrabold uppercase tracking-wider">Superesportivos</span>
-                                <span class="text-xs text-slate-300 font-mono"><i class="fa-regular fa-clock"></i> Leitura de 5 min</span>
+                                <span id="heroSlideCategory" class="px-3 py-1 rounded-full bg-cyanGlow text-luxury-950 text-xs font-extrabold uppercase tracking-wider">Hipercarros</span>
+                                <span class="text-xs text-slate-300 font-mono"><i class="fa-regular fa-clock"></i> Leitura de 4 min</span>
                             </div>
                             <h2 id="heroSlideTitle" class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight">
-                                A Revolução da Aerodinâmica Ativa nos Hipercarros de Nova Geração
+                                A Evolução da Aerodinâmica Ativa na Indústria Automotiva
                             </h2>
                             <p id="heroSlideExcerpt" class="text-slate-300 text-xs sm:text-sm line-clamp-2 leading-relaxed">
-                                Como as marcas de luxo integraram fibra de carbono moldada e turbinas de fluxo vetorial para atingir níveis unprecedented de sustentação negativa nas curvas.
+                                Entenda como asas móveis, defletores móveis sob o assoalho e componentes em fibra de carbono revolucionaram a estabilidade em altas velocidades.
                             </p>
                         </div>
 
-                        <!-- Carousel Controls -->
                         <div class="flex items-center gap-3">
                             <button onclick="prevHeroSlide()" class="w-12 h-12 rounded-2xl bg-luxury-950/80 border border-white/20 hover:border-cyanGlow text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95">
                                 <i class="fa-solid fa-chevron-left"></i>
@@ -242,64 +232,61 @@
                     </div>
                 </div>
 
-                <!-- 3 CARDS HIGHLIGHT GRID (Luxury, Electric, Classic) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- EDITORIAL CARDS -->
+                <div id="tecnologia" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- Card 1 -->
                     <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop" alt="Electric Vehicles" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800&auto=format&fit=crop" alt="Baterias Elétricas" class="w-full h-full object-cover">
                             <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-luxury-950/80 backdrop-blur-md border border-cyanGlow/40 text-cyanGlow text-[10px] font-bold uppercase tracking-wider">
                                 Mobilidade Elétrica
                             </span>
                         </div>
                         <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                             <div>
-                                <h3 class="font-display text-lg font-bold text-white">Baterias de Estado Sólido: O Futuro da Autonomia</h3>
+                                <h3 class="font-display text-lg font-bold text-white">Baterias de Estado Sólido e Eficiência Térmica</h3>
                                 <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                                    Conheça a tecnologia que promete recargas de 10 a 80% em apenas 10 minutos e autonomia ultrapassando 1.000 km.
+                                    A próxima geração de acumuladores de energia promete acelerar o tempo de recarga e aumentar drasticamente a densidade energética.
                                 </p>
                             </div>
-                            <a href="#tecnologia" class="text-cyanGlow text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
+                            <a href="#guias" class="text-cyanGlow text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
                                 Explorar Matéria <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Card 2 -->
                     <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Performance Motors" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Motores de Alta Performance" class="w-full h-full object-cover">
                             <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-luxury-950/80 backdrop-blur-md border border-violetGlow/40 text-violetGlow text-[10px] font-bold uppercase tracking-wider">
-                                Engenharia & Motores
+                                Motores & Desempenho
                             </span>
                         </div>
                         <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                             <div>
-                                <h3 class="font-display text-lg font-bold text-white">Motores Biturbo V8 vs. Híbridos de Alto Desempenho</h3>
+                                <h3 class="font-display text-lg font-bold text-white">Sistemas Híbridos de Desempenho Flexível</h3>
                                 <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                                    Uma comparação detalhada da entrega imediata de torque dos motores elétricos versus a curva de potência dos V8 biturbo.
+                                    Como o acoplamento instantâneo de motores elétricos elimina o retardo de resposta dos turbocompressores tradicionais.
                                 </p>
                             </div>
                             <a href="#comparador" class="text-violetGlow text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
-                                Ver Análise Técnica <i class="fa-solid fa-arrow-right"></i>
+                                Ver Comparativo <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Card 3 -->
                     <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=800&auto=format&fit=crop" alt="SUVs Luxury" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=800&auto=format&fit=crop" alt="Engenharia de Chassis" class="w-full h-full object-cover">
                             <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-luxury-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
-                                SUVs de Luxo
+                                Dinâmica Veicular
                             </span>
                         </div>
                         <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
                             <div>
-                                <h3 class="font-display text-lg font-bold text-white">Suspensão Pneumática Adaptativa & Conforto</h3>
+                                <h3 class="font-display text-lg font-bold text-white">Suspensão Ativa e Sensores Eletro-Hidráulicos</h3>
                                 <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                                    Entenda como os sensores de leitura de terreno ajustam o amortecimento em milissegundos para um rodar impecável.
+                                    Entenda como a leitura antecipada do relevo garante absorção de impactos e estabilidade em curvas aceleradas.
                                 </p>
                             </div>
                             <a href="#guias" class="text-emerald-400 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 hover:gap-3 transition-all">
@@ -313,200 +300,15 @@
             </div>
         </section>
 
-        <!-- SECTION: SECONDARY TABBED TOOL MODULE (FIPE & SPEC LOOKUP DEMOTED HERE) -->
-        <section id="ferramentas" class="py-20 border-t border-white/5 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-cyanGlow text-xs font-bold uppercase tracking-widest">Central de Ferramentas Informativas</span>
-                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Cotações FIPE & Calculadoras Técnicas</h2>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Ferramentas secundárias para consulta de mercado, custo de manutenção preventiva e decodificação visual.
-                    </p>
-                </div>
-
-                <!-- TAB SWITCHER -->
-                <div class="flex items-center justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
-                    <button onclick="switchToolTab('fipeTab')" id="btnTabFipe" class="px-6 py-3 rounded-xl border border-cyanGlow bg-cyanGlow/10 text-cyanGlow font-bold text-xs uppercase tracking-wider transition-all">
-                        <i class="fa-solid fa-chart-simple mr-2"></i> Tabela FIPE
-                    </button>
-                    <button onclick="switchToolTab('tcoTab')" id="btnTabTco" class="px-6 py-3 rounded-xl border border-white/10 bg-luxury-900/60 text-slate-400 font-bold text-xs uppercase tracking-wider transition-all hover:border-white/20">
-                        <i class="fa-solid fa-calculator mr-2"></i> Simulador Custo de Posse
-                    </button>
-                    <button onclick="switchToolTab('placaTab')" id="btnTabPlaca" class="px-6 py-3 rounded-xl border border-white/10 bg-luxury-900/60 text-slate-400 font-bold text-xs uppercase tracking-wider transition-all hover:border-white/20">
-                        <i class="fa-solid fa-barcode mr-2"></i> Decodificador de Placa
-                    </button>
-                </div>
-
-                <!-- TOOL CONTENT 1: FIPE -->
-                <div id="fipeTab" class="tool-content space-y-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                        <div class="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl border border-white/10 space-y-6">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">1. Categoria</label>
-                                <div class="grid grid-cols-3 gap-2">
-                                    <button onclick="selectCategory('carros')" id="catCarros" class="cat-btn py-3 px-2 rounded-xl border border-cyanGlow bg-cyanGlow/10 text-cyanGlow font-bold text-xs uppercase flex flex-col items-center gap-1.5 transition-all">
-                                        <i class="fa-solid fa-car text-base"></i> Carros
-                                    </button>
-                                    <button onclick="selectCategory('motos')" id="catMotos" class="cat-btn py-3 px-2 rounded-xl border border-white/10 bg-luxury-900/50 text-slate-400 font-bold text-xs uppercase flex flex-col items-center gap-1.5 transition-all hover:border-white/20">
-                                        <i class="fa-solid fa-motorcycle text-base"></i> Motos
-                                    </button>
-                                    <button onclick="selectCategory('caminhoes')" id="catCaminhoes" class="cat-btn py-3 px-2 rounded-xl border border-white/10 bg-luxury-900/50 text-slate-400 font-bold text-xs uppercase flex flex-col items-center gap-1.5 transition-all hover:border-white/20">
-                                        <i class="fa-solid fa-truck-front text-base"></i> Caminhões
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">2. Marca</label>
-                                <select id="fipeMarca" onchange="onMarcaChange()" class="w-full bg-luxury-900/80 border border-white/10 rounded-xl px-4 py-3 text-white text-xs sm:text-sm focus:border-cyanGlow outline-none transition-colors">
-                                    <option value="">Selecione a marca...</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">3. Modelo</label>
-                                <select id="fipeModelo" onchange="onModeloChange()" disabled class="w-full bg-luxury-900/80 border border-white/10 rounded-xl px-4 py-3 text-white text-xs sm:text-sm focus:border-cyanGlow outline-none disabled:opacity-40 transition-colors">
-                                    <option value="">Aguardando seleção da marca...</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">4. Ano Modelo</label>
-                                <select id="fipeAno" disabled class="w-full bg-luxury-900/80 border border-white/10 rounded-xl px-4 py-3 text-white text-xs sm:text-sm focus:border-cyanGlow outline-none disabled:opacity-40 transition-colors">
-                                    <option value="">Aguardando seleção do modelo...</option>
-                                </select>
-                            </div>
-
-                            <button onclick="calculateFipe()" class="w-full bg-gradient-to-r from-cyanGlow via-blueGlow to-violetGlow text-luxury-950 font-black py-4 rounded-xl shadow-glow-cyan text-xs uppercase tracking-wider hover:opacity-95 transition-all flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-calculator text-sm"></i>
-                                <span>Calcular Cotação FIPE</span>
-                            </button>
-                        </div>
-
-                        <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-white/10 min-h-[420px] flex flex-col justify-between">
-                            <div id="fipeEmptyState" class="my-auto text-center py-12 space-y-4">
-                                <div class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto text-cyanGlow text-2xl">
-                                    <i class="fa-solid fa-chart-line"></i>
-                                </div>
-                                <h3 class="text-white font-bold text-base">Aguardando Seleção</h3>
-                                <p class="text-slate-400 text-xs max-w-sm mx-auto">
-                                    Preencha os campos ao lado para visualizar a estimativa oficial de mercado e análise de depreciação do veículo.
-                                </p>
-                            </div>
-
-                            <div id="fipeResult" class="hidden space-y-6">
-                                <div class="flex items-start justify-between border-b border-white/10 pb-4">
-                                    <div>
-                                        <span id="fipeCategoryBadge" class="px-3 py-1 rounded-full bg-cyanGlow/10 border border-cyanGlow/30 text-cyanGlow text-[10px] font-bold uppercase tracking-wider">Carro</span>
-                                        <h3 id="fipeResultTitle" class="font-display text-2xl sm:text-3xl font-extrabold text-white mt-2">Toyota Corolla XEi 2.0</h3>
-                                        <p id="fipeResultSubtitle" class="text-slate-400 text-xs">Ano 2022 • Gasolina / Flex</p>
-                                    </div>
-                                    <span class="text-xs text-slate-500 font-mono" id="fipeRefCode">Cód: 002120-5</span>
-                                </div>
-
-                                <div class="p-6 rounded-2xl bg-gradient-to-r from-luxury-900 to-luxury-850 border border-cyanGlow/30 relative overflow-hidden shadow-glow-cyan">
-                                    <div class="relative z-10">
-                                        <span class="text-xs uppercase tracking-widest text-slate-400 font-bold">Valor Médio Tabela FIPE</span>
-                                        <div id="fipeResultPrice" class="font-display text-3xl sm:text-5xl font-black text-cyanGlow mt-1">R$ 139.900,00</div>
-                                        <p class="text-[11px] text-slate-400 mt-2">Mês de Referência: <span class="text-slate-200 font-semibold">Novembro / 2026</span></p>
-                                    </div>
-                                    <i class="fa-solid fa-tag absolute right-4 -bottom-4 text-white/5 text-8xl"></i>
-                                </div>
-
-                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                    <div class="bg-luxury-900/60 p-3.5 rounded-xl border border-white/5">
-                                        <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block">Desvalorização Médian</span>
-                                        <span id="fipeDeprec" class="text-emerald-400 font-bold text-sm mt-0.5 block">-2.1% ao ano</span>
-                                    </div>
-                                    <div class="bg-luxury-900/60 p-3.5 rounded-xl border border-white/5">
-                                        <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block">Combustível</span>
-                                        <span id="fipeFuel" class="text-white font-bold text-sm mt-0.5 block">Flex / Gasolina</span>
-                                    </div>
-                                    <div class="bg-luxury-900/60 p-3.5 rounded-xl border border-white/5 col-span-2 sm:col-span-1">
-                                        <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider block">Liquidez de Mercado</span>
-                                        <span id="fipeLiquidity" class="text-cyanGlow font-bold text-sm mt-0.5 block">Alta Procura</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TOOL CONTENT 2: TCO CALCULATOR -->
-                <div id="tcoTab" class="tool-content hidden">
-                    <div class="glass-card p-6 sm:p-10 rounded-3xl border border-white/10 max-w-4xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Quilometragem Mensal (km)</label>
-                                <input type="number" id="tcoKm" value="1000" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-emerald-400 outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Média de Consumo (km/l)</label>
-                                <input type="number" id="tcoKml" value="11" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-emerald-400 outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Preço do Combustível (R$/L)</label>
-                                <input type="number" id="tcoPriceFuel" value="5.80" step="0.10" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-emerald-400 outline-none">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Seguro Anual Estimado (R$)</label>
-                                <input type="number" id="tcoInsurance" value="3600" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-emerald-400 outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Manutenção Preventiva Anual (R$)</label>
-                                <input type="number" id="tcoMaint" value="2400" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-emerald-400 outline-none">
-                            </div>
-                        </div>
-
-                        <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 to-luxury-900 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
-                            <div>
-                                <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Custo Estimado Total Mensal</span>
-                                <div id="tcoTotalMonth" class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-1">R$ 1.027,27 / mês</div>
-                                <p class="text-[11px] text-slate-400 mt-1">Estimativa de custos rotineiros sem incluir tributos ou financiamento.</p>
-                            </div>
-                            <div class="text-right text-xs space-y-1 text-slate-300 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 border-white/10">
-                                <div>Combustível: <strong id="tcoFuelRes" class="text-white">R$ 527,27</strong></div>
-                                <div>Seguro Proporcional: <strong id="tcoInsuRes" class="text-white">R$ 300,00</strong></div>
-                                <div>Revisão Proporcional: <strong id="tcoMaintRes" class="text-white">R$ 200,00</strong></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TOOL CONTENT 3: PLATE DECODER -->
-                <div id="placaTab" class="tool-content hidden">
-                    <div class="glass-card p-8 rounded-3xl border border-white/10 max-w-2xl mx-auto text-center space-y-6">
-                        <div class="inline-block relative">
-                            <input type="text" id="plateInput" maxlength="8" placeholder="ABC1D23 ou ABC1234" uppercase class="bg-luxury-950 border-2 border-cyanGlow/40 rounded-2xl px-6 py-4 text-center font-mono text-2xl sm:text-3xl font-bold tracking-widest text-white uppercase outline-none focus:border-cyanGlow shadow-glow-cyan w-64 sm:w-80">
-                        </div>
-                        <div>
-                            <button onclick="decodePlate()" class="bg-gradient-to-r from-cyanGlow to-blueGlow text-luxury-950 font-extrabold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider hover:scale-105 transition-transform shadow-glow-cyan">
-                                Analisar Padrão Visual
-                            </button>
-                        </div>
-                        <div id="plateResult" class="hidden p-4 rounded-xl bg-luxury-900 border border-white/10 text-xs text-slate-300">
-                            <div id="plateBadge" class="inline-block px-3 py-1 rounded-md font-bold uppercase tracking-wider mb-2">Padrão Mercosul</div>
-                            <p id="plateDesc" class="text-slate-300">Padrão oficial Mercosul composto por 3 letras, 1 número, 1 letra e 2 números.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
         <!-- SECTION: COMPARATOR -->
         <section id="comparador" class="py-20 bg-luxury-900/40 border-t border-white/5 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="text-violetGlow text-xs font-bold uppercase tracking-widest">Análise de Desempenho</span>
-                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Comparador Técnico de Especificações</h2>
+                    <span class="text-violetGlow text-xs font-bold uppercase tracking-widest">Fichas Técnicas & Performance</span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Comparador de Especificações Técnicas</h2>
                     <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Compare motorização, desempenho de aceleração, volume de porta-malas e consumo entre diferentes modelos.
+                        Analise parâmetros mecânicos, aceleração, consumo estimado e dimensões entre veículos de referência.
                     </p>
                 </div>
 
@@ -515,7 +317,7 @@
                     <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10">
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 rounded-full bg-cyanGlow/10 border border-cyanGlow/30 text-cyanGlow text-xs font-bold">Veículo A</span>
-                            <span class="text-xs text-slate-400 font-mono">Modelo 1</span>
+                            <span class="text-xs text-slate-400 font-mono">Ficha 1</span>
                         </div>
                         <select id="compVehicleA" onchange="updateComparator()" class="w-full bg-luxury-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm font-bold focus:border-cyanGlow outline-none mb-6">
                             <option value="corolla">Toyota Corolla XEi 2.0 (177 cv)</option>
@@ -524,16 +326,14 @@
                             <option value="compass">Jeep Compass Limited 1.3T (185 cv)</option>
                         </select>
 
-                        <div id="specBoxA" class="space-y-4 text-xs">
-                            <!-- JS Populated -->
-                        </div>
+                        <div id="specBoxA" class="space-y-4 text-xs"></div>
                     </div>
 
                     <!-- Vehicle B -->
                     <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white/10">
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 rounded-full bg-violetGlow/10 border border-violetGlow/30 text-violetGlow text-xs font-bold">Veículo B</span>
-                            <span class="text-xs text-slate-400 font-mono">Modelo 2</span>
+                            <span class="text-xs text-slate-400 font-mono">Ficha 2</span>
                         </div>
                         <select id="compVehicleB" onchange="updateComparator()" class="w-full bg-luxury-950 border border-white/15 rounded-xl px-4 py-3 text-white text-sm font-bold focus:border-violetGlow outline-none mb-6">
                             <option value="civic">Honda Civic LX 2.0 (155 cv)</option>
@@ -542,8 +342,62 @@
                             <option value="compass">Jeep Compass Limited 1.3T (185 cv)</option>
                         </select>
 
-                        <div id="specBoxB" class="space-y-4 text-xs">
-                            <!-- JS Populated -->
+                        <div id="specBoxB" class="space-y-4 text-xs"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION: TCO CALCULATOR -->
+        <section id="simulador" class="py-20 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-cyanGlow text-xs font-bold uppercase tracking-widest">Estimativas & Planejamento</span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Calculadora de Custo Total de Posse (TCO)</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-2">
+                        Simule os gastos operacionais mensais com combustível, manutenção preventiva rotineira e apólice de seguro privada.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 sm:p-10 rounded-3xl border border-white/10 max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Quilometragem Mensal (km)</label>
+                            <input type="number" id="tcoKm" value="1000" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Média de Consumo (km/l)</label>
+                            <input type="number" id="tcoKml" value="11" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Preço do Combustível (R$/L)</label>
+                            <input type="number" id="tcoPriceFuel" value="5.80" step="0.10" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Seguro Privado Anual Estimado (R$)</label>
+                            <input type="number" id="tcoInsurance" value="3600" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Revisões Preventivas Anuais (R$)</label>
+                            <input type="number" id="tcoMaint" value="2400" oninput="calcTCO()" class="w-full bg-luxury-950 border border-white/10 rounded-xl px-4 py-3 text-white font-bold text-sm focus:border-cyanGlow outline-none">
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-luxury-900 to-luxury-850 border border-cyanGlow/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-glow-cyan">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-cyanGlow font-bold">Custo Operacional Mensal Estimado</span>
+                            <div id="tcoTotalMonth" class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-1">R$ 1.027,27 / mês</div>
+                            <p class="text-[11px] text-slate-400 mt-1">Estimativa informativa sem vínculo com tributos municipais/estaduais.</p>
+                        </div>
+                        <div class="text-right text-xs space-y-1 text-slate-300 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 border-white/10">
+                            <div>Combustível: <strong id="tcoFuelRes" class="text-white">R$ 527,27</strong></div>
+                            <div>Seguro Privado: <strong id="tcoInsuRes" class="text-white">R$ 300,00</strong></div>
+                            <div>Manutenção Preventiva: <strong id="tcoMaintRes" class="text-white">R$ 200,00</strong></div>
                         </div>
                     </div>
                 </div>
@@ -551,15 +405,15 @@
             </div>
         </section>
 
-        <!-- SECTION: AUTOMOTIVE TECH & GUIDES -->
-        <section id="guias" class="py-20 border-t border-white/5 relative">
+        <!-- SECTION: GUIDES -->
+        <section id="guias" class="py-20 border-t border-white/5 relative bg-luxury-900/30">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-2xl mx-auto mb-14">
-                    <span class="text-violetGlow text-xs font-bold uppercase tracking-widest">Conhecimento Técnico</span>
-                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Guias Educativos & Manutenção</h2>
+                    <span class="text-violetGlow text-xs font-bold uppercase tracking-widest">Conhecimento Prático</span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Guias Educativos de Manutenção</h2>
                     <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                        Artigos essenciais para ajudá-lo a entender diagnósticos mecânicos e manutenção de seminovos.
+                        Orientações para preservar o desempenho original do veículo e identificar sinais mecânicos precoces.
                     </p>
                 </div>
 
@@ -569,13 +423,13 @@
                             <div class="w-12 h-12 rounded-2xl bg-cyanGlow/10 border border-cyanGlow/30 flex items-center justify-center text-cyanGlow text-xl mb-6">
                                 <i class="fa-solid fa-clipboard-check"></i>
                             </div>
-                            <h3 class="font-display text-lg font-bold text-white mb-2">Checklist Físico de Compra</h3>
+                            <h3 class="font-display text-lg font-bold text-white mb-2">Vistoria Pré-Compra</h3>
                             <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                                Como avaliar o alinhamento de painéis de carroceria, desgaste de discos de freio e funcionamento do ar-condicionado.
+                                Aprenda a inspecionar alinhamento de lataria, estado de preservação dos discos de freio e estanqueidade de fluidos.
                             </p>
                         </div>
                         <a href="#destaques" class="text-cyanGlow font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                            Ler Artigo Completo <i class="fa-solid fa-arrow-right"></i>
+                            Ler Artigo <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
 
@@ -584,28 +438,28 @@
                             <div class="w-12 h-12 rounded-2xl bg-violetGlow/10 border border-violetGlow/30 flex items-center justify-center text-violetGlow text-xl mb-6">
                                 <i class="fa-solid fa-gears"></i>
                             </div>
-                            <h3 class="font-display text-lg font-bold text-white mb-2">Cuidados com Câmbio Automático</h3>
+                            <h3 class="font-display text-lg font-bold text-white mb-2">Lubrificação de Transmissões</h3>
                             <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                                Troca de fluido da transmissão CVT e Epicíclica: quando realizar e os sinais de patinação de embreagens internas.
+                                Entenda os intervalos recomendados de substituição de fluido em caixas automáticas CVT e de dupla embreagem.
                             </p>
                         </div>
                         <a href="#destaques" class="text-violetGlow font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                            Ler Artigo Completo <i class="fa-solid fa-arrow-right"></i>
+                            Ler Artigo <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
 
                     <div class="glass-card glass-card-hover rounded-3xl border border-white/10 p-6 flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-400 text-xl mb-6">
-                                <i class="fa-solid fa-bolt"></i>
+                                <i class="fa-solid fa-battery-half"></i>
                             </div>
-                            <h3 class="font-display text-lg font-bold text-white mb-2">Manutenção de Carros Híbridos</h3>
+                            <h3 class="font-display text-lg font-bold text-white mb-2">Cuidados com Veículos Híbridos</h3>
                             <p class="text-slate-400 text-xs leading-relaxed mb-6">
-                                Sistema de arrefecimento de baterias de alta tensão e frenagem regenerativa: o que muda nas revisões periódicas.
+                                Como conservar o sistema de arrefecimento da bateria de tração e otimizar a frenagem regenerativa.
                             </p>
                         </div>
                         <a href="#destaques" class="text-emerald-400 font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                            Ler Artigo Completo <i class="fa-solid fa-arrow-right"></i>
+                            Ler Artigo <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -629,7 +483,7 @@
                         <span class="font-display text-lg font-bold text-white">buscas<span class="text-cyanGlow">veiculares</span></span>
                     </a>
                     <p class="text-slate-400 leading-relaxed">
-                        Portal editorial e informativo dedicado à cultura automotiva, dados técnicos e análises de mercado.
+                        Portal editorial independente com foco em conteúdo informativo, novidades técnicas e calculadoras operacionais.
                     </p>
                 </div>
 
@@ -637,22 +491,20 @@
                     <h4 class="text-white font-bold uppercase tracking-wider mb-4">Navegação</h4>
                     <ul class="space-y-2.5">
                         <li><a href="#destaques" class="hover:text-cyanGlow transition-colors">Destaques</a></li>
-                        <li><a href="#tecnologia" class="hover:text-cyanGlow transition-colors">Tecnologia</a></li>
+                        <li><a href="#tecnologia" class="hover:text-cyanGlow transition-colors">Inovação</a></li>
                         <li><a href="#comparador" class="hover:text-cyanGlow transition-colors">Comparador Técnico</a></li>
-                        <li><a href="#ferramentas" class="hover:text-cyanGlow transition-colors">Ferramentas & FIPE</a></li>
-                        <li><a href="#guias" class="hover:text-cyanGlow transition-colors">Guias Informativos</a></li>
+                        <li><a href="#simulador" class="hover:text-cyanGlow transition-colors">Calculadora TCO</a></li>
+                        <li><a href="#guias" class="hover:text-cyanGlow transition-colors">Guias Práticos</a></li>
                     </ul>
                 </div>
 
                 <div class="md:col-span-2 space-y-3 bg-luxury-900/50 p-6 rounded-2xl border border-white/5">
-                    <h4 class="text-white font-bold uppercase tracking-wider">Aviso Legal & Transparência</h4>
+                    <h4 class="text-white font-bold uppercase tracking-wider">Identificação do Mantenedor</h4>
                     <p class="leading-relaxed text-slate-400">
-                        Este site é um portal estritamente <strong class="text-slate-200">INFORMATIVO</strong> e de caráter independente, mantido por 
-                        <strong class="text-slate-200">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong>, inscrita no CNPJ sob o nº 
-                        <strong class="text-cyanGlow">00.900.469/0001-92</strong>.
+                        Este site é operado de forma independente por <strong class="text-slate-200">Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong>, inscrita no CNPJ sob o nº <strong class="text-cyanGlow">00.900.469/0001-92</strong>.
                     </p>
                     <p class="leading-relaxed text-slate-400">
-                        Não realizamos prestação de serviços governamentais de qualquer natureza, tampouco cobramos taxas de usuários.
+                        Declaração expressa: O conteúdo deste portal possui cunho exclusivamente informativo e educativo. Não prestamos serviços governamentais nem possuímos convênios com órgãos públicos.
                     </p>
                 </div>
 
@@ -661,46 +513,108 @@
             <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
                 <p>&copy; 2026 Buscas Veiculares. Todos os direitos reservados.</p>
                 <div class="flex gap-6">
-                    <a href="#" onclick="alert('Este site é exclusivamente informativo.')" class="hover:text-cyanGlow">Termos de Uso</a>
-                    <a href="#" onclick="alert('Respeitamos sua privacidade.')" class="hover:text-cyanGlow">Política de Privacidade</a>
+                    <button onclick="openModal('modalTermos')" class="hover:text-cyanGlow transition-colors">Termos de Uso</button>
+                    <button onclick="openModal('modalPrivacidade')" class="hover:text-cyanGlow transition-colors">Política de Privacidade</button>
                 </div>
             </div>
 
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
+    <!-- MODAL 1: POLÍTICA DE PRIVACIDADE -->
+    <div id="modalPrivacidade" class="fixed inset-0 z-50 bg-luxury-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-luxury-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-user-shield text-cyanGlow text-xl"></i>
+                    <h3 class="font-display text-lg font-bold text-white">Política de Privacidade & Proteção de Dados (LGPD)</h3>
+                </div>
+                <button onclick="closeModal('modalPrivacidade')" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto text-xs text-slate-300 space-y-4 leading-relaxed">
+                <p><strong>1. Coleta de Dados de Navegação:</strong> O site <em>buscasveiculares.com</em> valoriza sua privacidade. Coletamos apenas informações não identificáveis de navegação (como endereço IP anonimizado, tipo de navegador e tempo de permanência) para fins analíticos de otimização de desempenho.</p>
+                <p><strong>2. Utilização de Cookies:</strong> Utilizamos cookies técnicos estritamente necessários para permitir a navegação fluida, memorizar preferências do usuário (como o fechamento de avisos) e aperfeiçoar nossos artigos informativos.</p>
+                <p><strong>3. Não Compartilhamento de Dados:</strong> Como este site não possui formulários de cadastro de usuários nem realiza a venda de serviços, não armazenamos dados pessoais sensíveis nem compartilhamos qualquer informação com terceiros.</p>
+                <p><strong>4. Direitos do Usuário (LGPD):</strong> Nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018), o usuário possui o direito de navegar de forma anônima e desativar os cookies nas configurações do seu navegador a qualquer momento.</p>
+                <p><strong>5. Mantenedor do Portal:</strong> Este portal é mantido pela <strong>Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong> (CNPJ: 00.900.469/0001-92).</p>
+            </div>
+            <div class="p-4 border-t border-white/10 bg-luxury-950 flex justify-end">
+                <button onclick="closeModal('modalPrivacidade')" class="bg-cyanGlow text-luxury-950 font-bold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider">
+                    Entendi e Concordo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: TERMOS DE USO -->
+    <div id="modalTermos" class="fixed inset-0 z-50 bg-luxury-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-luxury-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-file-contract text-cyanGlow text-xl"></i>
+                    <h3 class="font-display text-lg font-bold text-white">Termos de Uso & Condições Gerais</h3>
+                </div>
+                <button onclick="closeModal('modalTermos')" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto text-xs text-slate-300 space-y-4 leading-relaxed">
+                <p><strong>1. Caráter Exclusivamente Informativo:</strong> Todo o conteúdo disponibilizado no portal <em>buscasveiculares.com</em> possui caráter exclusivamente editorial, educativo e informativo. As ferramentas interativas (como o simulador de custo de posse) fornecem estimativas baseadas em parâmetros médios do setor.</p>
+                <p><strong>2. Inexistência de Serviços Governamentais:</strong> O presente site não presta serviços públicos de regulamentação, cobrança, emissão de documentos ou consultas oficiais. Não há qualquer vínculo, convênio ou afiliação com órgãos públicos ou governamentais.</p>
+                <p><strong>3. Limitação de Responsabilidade:</strong> As decisões financeiras ou de manutenção tomadas pelo usuário com base em nossas matérias são de sua exclusiva responsabilidade. Recomendamos sempre a consulta a mecânicos qualificados e profissionais do ramo automotivo antes de realizar transações ou intervenções técnicas.</p>
+                <p><strong>4. Propriedade Intelectual:</strong> Os textos, análises e layout do site são protegidos pelas leis de direitos autorais. A reprodução sem autorização prévia é proibida.</p>
+                <p><strong>5. Entidade Mantenedora:</strong> Projeto mantido e gerido por <strong>Aaecgpmp Associacao de Apoio do Ciep 456 Professor Marcos Costa Reis Dutra</strong> (CNPJ: 00.900.469/0001-92).</p>
+            </div>
+            <div class="p-4 border-t border-white/10 bg-luxury-950 flex justify-end">
+                <button onclick="closeModal('modalTermos')" class="bg-cyanGlow text-luxury-950 font-bold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider">
+                    Compreendo os Termos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Dismiss top banner
         function closeBanner() {
             document.getElementById('legalBanner').style.display = 'none';
         }
 
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
 
-        // Hero Slider Data
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.getElementById(modalId).classList.add('flex');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById(modalId).classList.remove('flex');
+        }
+
+        // Hero Slider
         const heroSlides = [
             {
                 image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1600&auto=format&fit=crop",
-                category: "Superesportivos",
-                title: "A Revolução da Aerodinâmica Ativa nos Hipercarros de Nova Geração",
-                excerpt: "Como as marcas de luxo integraram fibra de carbono moldada e turbinas de fluxo vetorial para atingir níveis unprecedented de sustentação negativa nas curvas."
+                category: "Hipercarros",
+                title: "A Evolução da Aerodinâmica Ativa na Indústria Automotiva",
+                excerpt: "Entenda como asas móveis, defletores móveis sob o assoalho e componentes em fibra de carbono revolucionaram a estabilidade em altas velocidades."
             },
             {
                 image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1600&auto=format&fit=crop",
-                category: "Sedãs de Luxo",
-                title: "O Equilíbrio Perfeito Entre Dinâmica Esportiva e Conforto Executivo",
-                excerpt: "Análise da engenharia de chassis de alumínio que reduz peso enquanto mantém a rigidez torcional em patamares elevados."
+                category: "Sedãs Executivos",
+                title: "Insonorização Acústica e Dinâmica de Chassis de Alumínio",
+                excerpt: "Uma análise detalhada das ligas metálicas leves utilizadas para reduzir a massa total sem comprometer a rigidez torcional do veículo."
             },
             {
                 image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1600&auto=format&fit=crop",
                 category: "Conceitos Automotivos",
-                title: "Inovações Tecnológicas que Definirão a Próxima Década nas Estradas",
-                excerpt: "Cockpits integrados com inteligência artificial adaptativa e vidros com projeção fotônica de alta definição."
+                title: "Sistemas Eletrônicos de Gestão de Torque e Estabilidade",
+                excerpt: "Como a computação a bordo atua em milissegundos para redistribuir a força motriz e evitar perdas de aderência."
             }
         ];
 
@@ -724,172 +638,9 @@
             updateHeroSlide();
         }
 
-        // Tool Tabs Switcher
-        function switchToolTab(tabId) {
-            document.querySelectorAll('.tool-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-
-            const btnFipe = document.getElementById('btnTabFipe');
-            const btnTco = document.getElementById('btnTabTco');
-            const btnPlaca = document.getElementById('btnTabPlaca');
-
-            const activeClass = "px-6 py-3 rounded-xl border border-cyanGlow bg-cyanGlow/10 text-cyanGlow font-bold text-xs uppercase tracking-wider transition-all";
-            const inactiveClass = "px-6 py-3 rounded-xl border border-white/10 bg-luxury-900/60 text-slate-400 font-bold text-xs uppercase tracking-wider transition-all hover:border-white/20";
-
-            btnFipe.className = tabId === 'fipeTab' ? activeClass : inactiveClass;
-            btnTco.className = tabId === 'tcoTab' ? activeClass : inactiveClass;
-            btnPlaca.className = tabId === 'placaTab' ? activeClass : inactiveClass;
-        }
-
-        // FIPE Mock Database
-        const fipeDatabase = {
-            carros: {
-                Toyota: {
-                    "Corolla XEi 2.0": {
-                        anos: {
-                            "2023 - Flex": { preco: "R$ 148.500,00", code: "002120-5", dep: "-1.9%", fuel: "Flex", liq: "Alta" },
-                            "2022 - Flex": { preco: "R$ 139.900,00", code: "002120-5", dep: "-2.1%", fuel: "Flex", liq: "Alta" }
-                        }
-                    }
-                },
-                Honda: {
-                    "Civic LX 2.0": {
-                        anos: {
-                            "2021 - Gasolina": { preco: "R$ 115.800,00", code: "004088-3", dep: "-2.4%", fuel: "Gasolina", liq: "Alta" }
-                        }
-                    }
-                }
-            },
-            motos: {
-                Honda: {
-                    "CG 160 Titan": {
-                        anos: {
-                            "2023 - Flex": { preco: "R$ 18.900,00", code: "801099-2", dep: "-1.2%", fuel: "Flex", liq: "Extrema" }
-                        }
-                    }
-                }
-            },
-            caminhoes: {
-                Volvo: {
-                    "FH 540 6x4": {
-                        anos: {
-                            "2022 - Diesel": { preco: "R$ 690.000,00", code: "503020-0", dep: "-3.8%", fuel: "Diesel", liq: "Média" }
-                        }
-                    }
-                }
-            }
-        };
-
-        let currentCat = 'carros';
-
-        function selectCategory(cat) {
-            currentCat = cat;
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.className = "cat-btn py-3 px-2 rounded-xl border border-white/10 bg-luxury-900/50 text-slate-400 font-bold text-xs uppercase flex flex-col items-center gap-1.5 transition-all hover:border-white/20";
-            });
-
-            const activeBtn = document.getElementById('cat' + cat.charAt(0).toUpperCase() + cat.slice(1));
-            activeBtn.className = "cat-btn py-3 px-2 rounded-xl border border-cyanGlow bg-cyanGlow/10 text-cyanGlow font-bold text-xs uppercase flex flex-col items-center gap-1.5 transition-all";
-
-            initMarcas();
-        }
-
-        function initMarcas() {
-            const marcaSel = document.getElementById('fipeMarca');
-            const modSel = document.getElementById('fipeModelo');
-            const anoSel = document.getElementById('fipeAno');
-
-            marcaSel.innerHTML = '<option value="">Selecione a marca...</option>';
-            modSel.innerHTML = '<option value="">Aguardando seleção da marca...</option>';
-            anoSel.innerHTML = '<option value="">Aguardando seleção do modelo...</option>';
-            modSel.disabled = true;
-            anoSel.disabled = true;
-
-            const marcas = Object.keys(fipeDatabase[currentCat] || {});
-            marcas.forEach(m => {
-                const opt = document.createElement('option');
-                opt.value = m;
-                opt.textContent = m;
-                marcaSel.appendChild(opt);
-            });
-        }
-
-        function onMarcaChange() {
-            const marca = document.getElementById('fipeMarca').value;
-            const modSel = document.getElementById('fipeModelo');
-            const anoSel = document.getElementById('fipeAno');
-
-            modSel.innerHTML = '<option value="">Selecione o modelo...</option>';
-            anoSel.innerHTML = '<option value="">Aguardando seleção do modelo...</option>';
-            anoSel.disabled = true;
-
-            if (!marca || !fipeDatabase[currentCat][marca]) {
-                modSel.disabled = true;
-                return;
-            }
-
-            modSel.disabled = false;
-            const modelos = Object.keys(fipeDatabase[currentCat][marca]);
-            modelos.forEach(mod => {
-                const opt = document.createElement('option');
-                opt.value = mod;
-                opt.textContent = mod;
-                modSel.appendChild(opt);
-            });
-        }
-
-        function onModeloChange() {
-            const marca = document.getElementById('fipeMarca').value;
-            const modelo = document.getElementById('fipeModelo').value;
-            const anoSel = document.getElementById('fipeAno');
-
-            anoSel.innerHTML = '<option value="">Selecione o ano/combustível...</option>';
-
-            if (!marca || !modelo || !fipeDatabase[currentCat][marca][modelo]) {
-                anoSel.disabled = true;
-                return;
-            }
-
-            anoSel.disabled = false;
-            const anosObj = fipeDatabase[currentCat][marca][modelo].anos;
-            Object.keys(anosObj).forEach(a => {
-                const opt = document.createElement('option');
-                opt.value = a;
-                opt.textContent = a;
-                anoSel.appendChild(opt);
-            });
-        }
-
-        function calculateFipe() {
-            const marca = document.getElementById('fipeMarca').value;
-            const modelo = document.getElementById('fipeModelo').value;
-            const ano = document.getElementById('fipeAno').value;
-
-            if (!marca || !modelo || !ano) {
-                alert('Selecione a Marca, Modelo e Ano para consultar o valor FIPE.');
-                return;
-            }
-
-            const item = fipeDatabase[currentCat][marca][modelo].anos[ano];
-
-            document.getElementById('fipeEmptyState').classList.add('hidden');
-            const res = document.getElementById('fipeResult');
-            res.classList.remove('hidden');
-
-            document.getElementById('fipeCategoryBadge').textContent = currentCat.toUpperCase();
-            document.getElementById('fipeResultTitle').textContent = marca + ' ' + modelo;
-            document.getElementById('fipeResultSubtitle').textContent = 'Ano ' + ano;
-            document.getElementById('fipeResultPrice').textContent = item.preco;
-            document.getElementById('fipeRefCode').textContent = 'Cód: ' + item.code;
-            document.getElementById('fipeDeprec').textContent = item.dep + ' ao ano';
-            document.getElementById('fipeFuel').textContent = item.fuel;
-            document.getElementById('fipeLiquidity').textContent = item.liq + ' Procuras';
-        }
-
         // Vehicle Specifications Comparator Data
         const specDatabase = {
             corolla: {
-                name: "Toyota Corolla XEi 2.0",
                 power: "177 cv @ 6.600 rpm",
                 torque: "21,4 kgfm",
                 accel: "9,2 segundos (0-100 km/h)",
@@ -898,7 +649,6 @@
                 transmission: "CVT de 10 Marchas"
             },
             civic: {
-                name: "Honda Civic LX 2.0",
                 power: "155 cv @ 6.300 rpm",
                 torque: "19,5 kgfm",
                 accel: "10,0 segundos (0-100 km/h)",
@@ -907,7 +657,6 @@
                 transmission: "CVT 7 Velocidades"
             },
             onix: {
-                name: "Chevrolet Onix Turbo 1.0",
                 power: "116 cv @ 5.500 rpm",
                 torque: "16,8 kgfm",
                 accel: "10,1 segundos (0-100 km/h)",
@@ -916,7 +665,6 @@
                 transmission: "Automático de 6 Marchas"
             },
             compass: {
-                name: "Jeep Compass Limited 1.3T",
                 power: "185 cv @ 5.750 rpm",
                 torque: "27,5 kgfm",
                 accel: "8,8 segundos (0-100 km/h)",
@@ -949,15 +697,15 @@
                     <strong class="text-cyanGlow">${obj.accel}</strong>
                 </div>
                 <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Volume do Porta-Malas:</span>
+                    <span class="text-slate-400">Capacidade do Porta-Malas:</span>
                     <strong class="text-white">${obj.trunk}</strong>
                 </div>
                 <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Consumo Urbano:</span>
+                    <span class="text-slate-400">Consumo Urbano Estimado:</span>
                     <strong class="text-emerald-400">${obj.urbanFuel}</strong>
                 </div>
                 <div class="flex justify-between p-2.5 rounded-lg bg-luxury-950/60 border border-white/5">
-                    <span class="text-slate-400">Câmbio:</span>
+                    <span class="text-slate-400">Transmissão:</span>
                     <strong class="text-white">${obj.transmission}</strong>
                 </div>
             `;
@@ -983,36 +731,7 @@
             document.getElementById('tcoMaintRes').textContent = 'R$ ' + maintMonthly.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        // License Plate Decoder
-        function decodePlate() {
-            const plate = document.getElementById('plateInput').value.trim().toUpperCase();
-            const res = document.getElementById('plateResult');
-            const badge = document.getElementById('plateBadge');
-            const desc = document.getElementById('plateDesc');
-
-            res.classList.remove('hidden');
-
-            const mercosulRegex = /^[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$/;
-            const tradicionalRegex = /^[A-Z]{3}[0-9]{4}$/;
-
-            if (mercosulRegex.test(plate)) {
-                badge.className = "inline-block px-3 py-1 rounded-md font-bold uppercase tracking-wider mb-2 bg-cyanGlow/20 text-cyanGlow border border-cyanGlow/40";
-                badge.textContent = "Padrão Mercosul Detectado";
-                desc.textContent = "A sequência informada corresponde ao padrão oficial Mercosul (3 letras + 1 número + 1 letra + 2 números).";
-            } else if (tradicionalRegex.test(plate)) {
-                badge.className = "inline-block px-3 py-1 rounded-md font-bold uppercase tracking-wider mb-2 bg-violetGlow/20 text-violetGlow border border-violetGlow/40";
-                badge.textContent = "Padrão Tradicional Cinza Detectado";
-                desc.textContent = "A sequência informada corresponde ao modelo anterior (3 letras + 4 números).";
-            } else {
-                badge.className = "inline-block px-3 py-1 rounded-md font-bold uppercase tracking-wider mb-2 bg-rose-500/20 text-rose-400 border border-rose-500/40";
-                badge.textContent = "Formato Inválido";
-                desc.textContent = "A sequência digitada não segue o formato padrão brasileiro (ABC1D23 ou ABC1234).";
-            }
-        }
-
-        // Initialize default UI setup
         window.onload = function() {
-            initMarcas();
             updateComparator();
             calcTCO();
         };
