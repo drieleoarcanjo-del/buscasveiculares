@@ -64,6 +64,7 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#servicos" class="hover:text-cyan-400 transition-colors">Consultas</a>
         <a href="#pilares" class="hover:text-cyan-400 transition-colors">Temas Editoriais</a>
         <a href="#checklist" class="hover:text-cyan-400 transition-colors">Checklist de Compra</a>
         <a href="#artigos" class="hover:text-cyan-400 transition-colors">Artigos</a>
@@ -77,55 +78,121 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="relative py-20 overflow-hidden border-b border-slate-800">
+  <!-- HERO SECTION COM PRINCIPAIS SERVIÇOS DE CONSULTAS AUTOMOTIVAS E VEICULARES -->
+  <section id="servicos" class="relative py-20 overflow-hidden border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs text-cyan-400">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            Guia Automotivo Independente · Edição 2026
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs text-cyan-400 mb-4">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          Guia Automotivo Independente · Edição 2026
+        </div>
+        <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
+          Principais Serviços de <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 glow-cyan">Consultas Automotivas</span> e Veiculares
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 leading-relaxed">
+          Entenda os principais tipos de verificações e checagens recomendadas antes de comprar ou negociar um automóvel seminovo ou usado.
+        </p>
+      </div>
+
+      <!-- GRID DE SERVIÇOS DE CONSULTA -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Serviço 1 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 text-2xl">
+              🔍
+            </div>
+            <h3 class="text-white font-bold text-lg mb-2">Consulta de Histórico de Sinistros e Leilão</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Verificação de registros de indenização integral (perda total), recuperados de leilão judicial ou de seguradoras, além de apontamentos de acidentes prévios.
+            </p>
           </div>
-          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Informação automotiva <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 glow-cyan">clara, direta</span> e transparente.
-          </h1>
-          <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-            Revisão preventiva, inspeção física de seminovos e análise de mercado de forma simples. Conteúdo 100% informativo mantido de forma independente por entidade privada.
-          </p>
-          <div class="flex flex-wrap gap-4 pt-4">
-            <a href="#checklist" class="px-6 py-3.5 rounded-xl bg-cyan-500 text-black font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/25">
-              Acessar Checklist de Compra
-            </a>
-            <a href="#pilares" class="px-6 py-3.5 rounded-xl bg-slate-800 text-white font-medium hover:bg-slate-700 border border-slate-700 transition-all">
-              Explorar Guia Técnico
-            </a>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+            Segurança na Compra →
           </div>
         </div>
 
-        <div class="lg:col-span-5">
-          <div class="glass-card rounded-2xl p-6 relative">
-            <div class="relative h-64 rounded-xl overflow-hidden mb-4">
-              <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=80" alt="Veículo Usado em Destaque" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-              <span class="absolute top-3 left-3 bg-cyan-500/90 text-black text-[11px] font-bold px-2.5 py-1 rounded">
-                Guia de Compra de Usados
-              </span>
+        <!-- Serviço 2 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 text-2xl">
+              📋
             </div>
-            <div class="space-y-2">
-              <div class="flex justify-between items-center">
-                <h3 class="text-white font-bold text-lg">Inspeção Prática de Seminovos</h3>
-                <span class="text-xs text-slate-400">Guia Prático</span>
-              </div>
-              <p class="text-xs text-slate-400">
-                Saiba quais pontos mecânicos e estruturais avaliar antes de fechar qualquer negócio no mercado automotivo.
-              </p>
-              <div class="pt-2 border-t border-slate-800 flex justify-between text-xs text-slate-400">
-                <span>Análise Estrutural</span>
-                <span>Custo de Manutenção</span>
-              </div>
-            </div>
+            <h3 class="text-white font-bold text-lg mb-2">Checagem de Débitos e Restrições Judiciais</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Levantamento de pendências de IPVA, licenciamento atrasado, multas municipais/estaduais, alienação fiduciária, impedimentos judiciais (RENAJUD) e gravame.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+            Regularização Documental →
           </div>
         </div>
+
+        <!-- Serviço 3 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 text-2xl">
+              🛡️
+            </div>
+            <h3 class="text-white font-bold text-lg mb-2">Verificação de Queixa de Roubo e Furtos</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Análise dos registros policiais de furto ou roubo em aberto junto aos bancos de dados de segurança pública estaduais e federais.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+            Proteção Jurídica →
+          </div>
+        </div>
+
+        <!-- Serviço 4 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 text-2xl">
+              📊
+            </div>
+            <h3 class="text-white font-bold text-lg mb-2">Consulta de Tabela FIPE & Depreciação</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Acompanhamento da cotação oficial de mercado, histórico de variação de preços e estimativa da curva de desvalorização por ano/modelo.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+            Análise Econômica →
+          </div>
+        </div>
+
+        <!-- Serviço 5 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 text-2xl">
+              ⚙️
+            </div>
+            <h3 class="text-white font-bold text-lg mb-2">Decodificação de Chassi (VIN) & Motor</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Conferência da autenticidade da numeração do Chassi e do bloco do motor para confirmação do ano de fabricação, equipamentos originais e procedência.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+            Autenticidade Técnica →
+          </div>
+        </div>
+
+        <!-- Serviço 6 -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4 text-2xl">
+              🔔
+            </div>
+            <h3 class="text-white font-bold text-lg mb-2">Consulta de Recalls Pendentes</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Identificação de chamamentos de fábrica não atendidos pelo proprietário anterior para substituição gratuita de componentes de segurança defeituosos.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-800 text-xs font-semibold text-cyan-400">
+            Segurança Veicular →
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -472,13 +539,11 @@
       } else {
         html = `
           <h2 class="text-xl font-bold text-white mb-4">Termos de Uso</h2>
-          <p class="mb-2">O acesso ao portal <strong>buscasveiculares</strong> implica a aceitação integral dos termos estabelecidos abaixo:</p>
-          <h3 class="font-bold text-cyan-400 mt-3 mb-1">1. Caráter Exclusivamente Informativo</h3>
-          <p class="mb-2">Todo o conteúdo disponibilizado tem finalidade única e exclusivamente editorial, informativa e educativa. Não emitimos documentos, não realizamos agendamentos oficiais e não temos ligação com órgãos de trânsito ou entidades governamentais.</p>
-          <h3 class="font-bold text-cyan-400 mt-3 mb-1">2. Atividade da Mantenedora</h3>
-          <p class="mb-2">A mantenedora possui CNAE 85.50-3-02 (Atividades de apoio à educação) e mantém esta publicação de forma livre e aberta como projeto informativo autônomo.</p>
-          <h3 class="font-bold text-cyan-400 mt-3 mb-1">3. Responsabilidade do Leitor</h3>
-          <p>As decisões tomadas com base nas informações contidas neste portal são de inteira responsabilidade do usuário.</p>
+          <p class="mb-2">O acesso ao portal <strong>buscasveiculares</strong> implica a aceitação integral dos presentes Termos de Uso.</p>
+          <h3 class="font-bold text-cyan-400 mt-3 mb-1">1. Caráter Informativo</h3>
+          <p class="mb-2">Todo o conteúdo disponibilizado neste site possui finalidade exclusivamente educativa e informativa, visando orientar compradores e proprietários de veículos sobre boas práticas de manutenção e vistoria.</p>
+          <h3 class="font-bold text-cyan-400 mt-3 mb-1">2. Ausência de Serviços Públicos</h3>
+          <p>O portal não presta serviços de emissão de documentos, cobrança de taxas, vistorias oficiais ou qualquer atividade exclusiva de órgãos estaduais ou federais de trânsito.</p>
         `;
       }
       document.getElementById('legalModalContent').innerHTML = html;
